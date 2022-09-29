@@ -14,8 +14,25 @@
 
 		public void ResetForm()
 		{
-			welcomeToolStripStatusLabel.Text =
-				$"Welcome {Infrastructure.Utility.AuthenticatedUser!.Username}";
+			if (Infrastructure.Utility.AuthenticatedUser == null)
+			{
+				System.Windows.Forms.Application.Exit();
+				return;
+			}
+
+			//welcomeToolStripStatusLabel.Text =
+			//	$"Welcome {Infrastructure.Utility.AuthenticatedUser!.Username}";
+
+			string? userDisplayName =
+				Infrastructure.Utility.AuthenticatedUser.FullName;
+
+			if (string.IsNullOrWhiteSpace(value: userDisplayName))
+			{
+				userDisplayName =
+					Infrastructure.Utility.AuthenticatedUser.Username;
+			}
+
+			welcomeToolStripStatusLabel.Text = $"Welcome {userDisplayName}";
 		}
 
 		private ChangePasswordForm? MyChangePasswordForm { get; set; }
@@ -39,6 +56,21 @@
 			}
 
 			MyChangePasswordForm.Show();
+		}
+
+		private UpdateProfileForm? MyUpdateProfileForm { get; set; }
+
+		private void UpdateProfileToolStripMenuItem_Click(object sender, System.EventArgs e)
+		{
+			if (MyUpdateProfileForm == null || MyUpdateProfileForm.IsDisposed)
+			{
+				MyUpdateProfileForm = new UpdateProfileForm
+				{
+					MdiParent = this,
+				};
+			}
+
+			MyUpdateProfileForm.Show();
 		}
 	}
 }
