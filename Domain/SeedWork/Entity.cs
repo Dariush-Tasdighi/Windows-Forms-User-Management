@@ -18,6 +18,8 @@
 		// **********
 
 		// **********
+		[System.ComponentModel.Browsable(browsable: false)]
+
 		[System.ComponentModel.DataAnnotations.Schema.DatabaseGenerated
 			(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None)]
 		public System.Guid Id { get; protected set; }

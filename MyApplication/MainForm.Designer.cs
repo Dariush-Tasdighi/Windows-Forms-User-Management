@@ -71,33 +71,35 @@
 			// updateProfileToolStripMenuItem
 			// 
 			this.updateProfileToolStripMenuItem.Name = "updateProfileToolStripMenuItem";
-			this.updateProfileToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+			this.updateProfileToolStripMenuItem.Size = new System.Drawing.Size(207, 26);
 			this.updateProfileToolStripMenuItem.Text = "&Update Profile";
 			this.updateProfileToolStripMenuItem.Click += new System.EventHandler(this.UpdateProfileToolStripMenuItem_Click);
 			// 
 			// changePasswordToolStripMenuItem
 			// 
 			this.changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
-			this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+			this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(207, 26);
 			this.changePasswordToolStripMenuItem.Text = "&Change Password";
 			this.changePasswordToolStripMenuItem.Click += new System.EventHandler(this.ChangePasswordToolStripMenuItem_Click);
 			// 
 			// toolStripMenuItem1
 			// 
 			this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-			this.toolStripMenuItem1.Size = new System.Drawing.Size(221, 6);
+			this.toolStripMenuItem1.Size = new System.Drawing.Size(204, 6);
 			// 
 			// logoutToolStripMenuItem
 			// 
 			this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
-			this.logoutToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+			this.logoutToolStripMenuItem.Size = new System.Drawing.Size(207, 26);
 			this.logoutToolStripMenuItem.Text = "&Logout";
+			this.logoutToolStripMenuItem.Click += new System.EventHandler(this.LogoutToolStripMenuItem_Click);
 			// 
 			// exitToolStripMenuItem
 			// 
 			this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-			this.exitToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+			this.exitToolStripMenuItem.Size = new System.Drawing.Size(207, 26);
 			this.exitToolStripMenuItem.Text = "E&xit";
+			this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
 			// 
 			// adminToolStripMenuItem
 			// 
@@ -110,8 +112,9 @@
 			// usersToolStripMenuItem
 			// 
 			this.usersToolStripMenuItem.Name = "usersToolStripMenuItem";
-			this.usersToolStripMenuItem.Size = new System.Drawing.Size(127, 26);
+			this.usersToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
 			this.usersToolStripMenuItem.Text = "&Users";
+			this.usersToolStripMenuItem.Click += new System.EventHandler(this.UsersToolStripMenuItem_Click);
 			// 
 			// myStatusStrip
 			// 

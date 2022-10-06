@@ -13,10 +13,14 @@
 		}
 
 		// **********
+		[System.ComponentModel.DisplayName
+			(displayName: "Admin")]
 		public bool IsAdmin { get; set; }
 		// **********
 
 		// **********
+		[System.ComponentModel.DisplayName
+			(displayName: "Active")]
 		public bool IsActive { get; set; }
 		// **********
 
@@ -49,12 +53,19 @@
 		// **********
 
 		// **********
+		[System.ComponentModel.DisplayName
+			(displayName: "Full Name")]
+
+		[System.ComponentModel.DataAnnotations.Display
+			(Name = "Full Name")]
+
 		[System.ComponentModel.DataAnnotations.MaxLength
 			(length: 50)]
 		public string? FullName { get; set; }
 		// **********
 
 		// **********
+		[System.ComponentModel.Browsable(browsable: false)]
 		public string? Description { get; set; }
 		// **********
 	}
