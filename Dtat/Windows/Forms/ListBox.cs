@@ -1,9 +1,8 @@
-﻿namespace Dtat.Windows.Forms
+﻿namespace Dtat.Windows.Forms;
+
+public class ListBox : System.Windows.Forms.ListBox
 {
-	public class ListBox : System.Windows.Forms.ListBox
+	public ListBox() : base()
 	{
-		public ListBox() : base()
-		{
-		}
 	}
 }

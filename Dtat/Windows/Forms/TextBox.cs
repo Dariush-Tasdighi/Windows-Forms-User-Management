@@ -1,9 +1,8 @@
-﻿namespace Dtat.Windows.Forms
+﻿namespace Dtat.Windows.Forms;
+
+public class TextBox : System.Windows.Forms.TextBox
 {
-	public class TextBox : System.Windows.Forms.TextBox
+	public TextBox() : base()
 	{
-		public TextBox() : base()
-		{
-		}
 	}
 }

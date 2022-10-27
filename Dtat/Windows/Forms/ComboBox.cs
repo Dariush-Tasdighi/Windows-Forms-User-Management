@@ -1,9 +1,8 @@
-﻿namespace Dtat.Windows.Forms
+﻿namespace Dtat.Windows.Forms;
+
+public class ComboBox : System.Windows.Forms.ComboBox
 {
-	public class ComboBox : System.Windows.Forms.ComboBox
+	public ComboBox() : base()
 	{
-		public ComboBox() : base()
-		{
-		}
 	}
 }

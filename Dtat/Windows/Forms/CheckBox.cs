@@ -1,9 +1,8 @@
-﻿namespace Dtat.Windows.Forms
+﻿namespace Dtat.Windows.Forms;
+
+public class CheckBox : System.Windows.Forms.CheckBox
 {
-	public class CheckBox : System.Windows.Forms.CheckBox
+	public CheckBox() : base()
 	{
-		public CheckBox() : base()
-		{
-		}
 	}
 }

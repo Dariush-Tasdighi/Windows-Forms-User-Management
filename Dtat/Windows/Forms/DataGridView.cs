@@ -1,9 +1,8 @@
-﻿namespace Dtat.Windows.Forms
+﻿namespace Dtat.Windows.Forms;
+
+public class DataGridView : System.Windows.Forms.DataGridView
 {
-	public class DataGridView : System.Windows.Forms.DataGridView
+	public DataGridView() : base()
 	{
-		public DataGridView() : base()
-		{
-		}
 	}
 }
