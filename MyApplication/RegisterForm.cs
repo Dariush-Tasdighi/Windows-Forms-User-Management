@@ -15,17 +15,23 @@ public partial class RegisterForm : Infrastructure.BaseForm
 		// **************************************************
 		// **************************************************
 		usernameTextBox.Text =
-			Infrastructure.Utility.FixText(usernameTextBox.Text);
+			Infrastructure.Utility
+			.FixText(text: usernameTextBox.Text);
 
 		passwordTextBox.Text =
-			Infrastructure.Utility.FixText(passwordTextBox.Text);
-		// **************************************************
+			Infrastructure.Utility
+			.FixText(text: passwordTextBox.Text);
 
-		// **************************************************
+		fullNameTextBox.Text =
+			Infrastructure.Utility
+			.FixText(text: fullNameTextBox.Text);
+
 		if (usernameTextBox.Text == string.Empty || passwordTextBox.Text == string.Empty)
 		{
-			System.Windows.Forms.MessageBox
-				.Show(text: "Username and Password is requied!");
+			var errorMessage =
+				"Username and Password are requied!";
+
+			System.Windows.Forms.MessageBox.Show(text: errorMessage);
 
 			if (usernameTextBox.Text == string.Empty)
 			{
@@ -42,17 +48,13 @@ public partial class RegisterForm : Infrastructure.BaseForm
 
 		// **************************************************
 		var errorMessages = string.Empty;
-		// **************************************************
 
-		// **************************************************
 		if (usernameTextBox.Text.Length < 6)
 		{
 			errorMessages =
 				"Username length should be at least 6 characters!";
 		}
-		// **************************************************
 
-		// **************************************************
 		if (passwordTextBox.Text.Length < 8)
 		{
 			if (errorMessages != string.Empty)
@@ -64,9 +66,7 @@ public partial class RegisterForm : Infrastructure.BaseForm
 			errorMessages +=
 				"Password length should be at least 8 characters!";
 		}
-		// **************************************************
 
-		// **************************************************
 		// اگر خطایی وجود داشت
 		if (errorMessages != string.Empty)
 		{
@@ -93,13 +93,15 @@ public partial class RegisterForm : Infrastructure.BaseForm
 
 			var foundedUser =
 				databaseContext.Users
-				.Where(current => current.Username.ToLower() == usernameTextBox.Text!.ToLower())
+				.Where(current => current.Username.ToLower() == usernameTextBox.Text.ToLower())
 				.FirstOrDefault();
 
 			if (foundedUser != null)
 			{
-				System.Windows.Forms.MessageBox.Show
-					(text: "This username is already exist! Please choose another one...");
+				var errorMessage =
+					"This username is already exist! Please choose another one.";
+
+				System.Windows.Forms.MessageBox.Show(text: errorMessage);
 
 				usernameTextBox.Focus();
 
@@ -110,8 +112,10 @@ public partial class RegisterForm : Infrastructure.BaseForm
 				new Domain.User
 				(username: usernameTextBox.Text, password: passwordTextBox.Text)
 				{
-					// بستگی به سناریو و قواعد و قوانین شرکت یا پروژه دارد
+					// دستور ذیل، بستگی به سناریو و قواعد و قوانین شرکت یا پروژه دارد
 					IsActive = true,
+
+					FullName = fullNameTextBox.Text,
 				};
 
 			databaseContext.Add(entity: newUser);
@@ -125,8 +129,13 @@ public partial class RegisterForm : Infrastructure.BaseForm
 			// **************************************************
 			//passwordTextBox.Text = string.Empty;
 			//usernameTextBox.Text = string.Empty;
+			//fullNameTextBox.Text = string.Empty;
 
 			//usernameTextBox.Focus();
+			// **************************************************
+
+			// **************************************************
+			// DRY = Don't Repeat Yourself!
 			// **************************************************
 
 			// **************************************************
@@ -158,6 +167,7 @@ public partial class RegisterForm : Infrastructure.BaseForm
 	{
 		//passwordTextBox.Text = string.Empty;
 		//usernameTextBox.Text = string.Empty;
+		//fullNameTextBox.Text = string.Empty;
 
 		//usernameTextBox.Focus();
 
@@ -168,6 +178,7 @@ public partial class RegisterForm : Infrastructure.BaseForm
 	{
 		passwordTextBox.Text = string.Empty;
 		usernameTextBox.Text = string.Empty;
+		fullNameTextBox.Text = string.Empty;
 
 		usernameTextBox.Focus();
 	}
@@ -176,18 +187,23 @@ public partial class RegisterForm : Infrastructure.BaseForm
 		(object sender, System.EventArgs e)
 	{
 		// **************************************************
+		// دستورات ذیل احمقانه می‌باشد
+		// **************************************************
+		//Hide();
+
 		//var loginForm = new LoginForm();
 		//loginForm.Show();
-		//Hide();
 		// **************************************************
 
 		// **************************************************
 		//Hide();
+
 		//Infrastructure.Utility.LoginForm.Show();
 		// **************************************************
 
 		// **************************************************
 		Hide();
+
 		Infrastructure.Utility.LoginForm.ResetForm();
 		Infrastructure.Utility.LoginForm.Show();
 		// **************************************************

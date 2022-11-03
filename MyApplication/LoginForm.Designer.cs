@@ -62,6 +62,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.usernameTextBox.Location = new System.Drawing.Point(93, 13);
 			this.usernameTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+			this.usernameTextBox.MaxLength = 20;
 			this.usernameTextBox.Name = "usernameTextBox";
 			this.usernameTextBox.Size = new System.Drawing.Size(393, 27);
 			this.usernameTextBox.TabIndex = 1;
@@ -72,6 +73,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.passwordTextBox.Location = new System.Drawing.Point(93, 48);
 			this.passwordTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+			this.passwordTextBox.MaxLength = 20;
 			this.passwordTextBox.Name = "passwordTextBox";
 			this.passwordTextBox.Size = new System.Drawing.Size(393, 27);
 			this.passwordTextBox.TabIndex = 3;
