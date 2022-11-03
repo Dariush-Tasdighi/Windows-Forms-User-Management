@@ -151,21 +151,33 @@ public partial class LoginForm : Infrastructure.BaseForm
 			}
 
 			// **************************************************
-			System.Windows.Forms.MessageBox.Show(text: "Welcome!");
+			//System.Windows.Forms.MessageBox.Show(text: "Welcome!");
+			// **************************************************
+
+			// **************************************************
+			// روش احمقانه
+			// **************************************************
+			//Hide();
+
+			//var mainForm = new MainForm();
+			//mainForm.Show();
+			// **************************************************
+
+			// **************************************************
+			// روش احمقانه
+			// **************************************************
+			Infrastructure.Utility.AuthenticatedUser = foundedUser;
+
+			Hide();
+
+			var mainForm = new MainForm();
+			mainForm.Show();
 			// **************************************************
 
 			//// **************************************************
 			//// **************************************************
 			//// **************************************************
 			//Infrastructure.Utility.AuthenticatedUser = foundedUser;
-			//// **************************************************
-
-			//// **************************************************
-			//// روش احمقانه
-			////Hide();
-			////var mainForm = new MainForm();
-			////mainForm.Show();
-
 			//// **************************************************
 
 			//// **************************************************
@@ -256,6 +268,6 @@ public partial class LoginForm : Infrastructure.BaseForm
 	private void ExitButton_Click
 		(object sender, System.EventArgs e)
 	{
-
+		Infrastructure.Utility.Exit();
 	}
 }

@@ -230,4 +230,20 @@ public static class Utility : object
 	// **************************************************
 	public static Domain.User? AuthenticatedUser;
 	// **************************************************
+
+	public static void Exit()
+	{
+		var result =
+			System.Windows.Forms.MessageBox.Show
+			(text: "Are you sure?",
+			caption: "Question",
+			buttons: System.Windows.Forms.MessageBoxButtons.YesNo,
+			icon: System.Windows.Forms.MessageBoxIcon.Question,
+			defaultButton: System.Windows.Forms.MessageBoxDefaultButton.Button2);
+
+		if (result == System.Windows.Forms.DialogResult.Yes)
+		{
+			System.Windows.Forms.Application.Exit();
+		}
+	}
 }

@@ -208,4 +208,10 @@ public partial class RegisterForm : Infrastructure.BaseForm
 		Infrastructure.Utility.LoginForm.Show();
 		// **************************************************
 	}
+
+	private void ExitButton_Click
+		(object sender, System.EventArgs e)
+	{
+		Infrastructure.Utility.Exit();
+	}
 }

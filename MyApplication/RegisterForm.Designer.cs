@@ -49,6 +49,7 @@
 			this.exitButton.TabIndex = 9;
 			this.exitButton.Text = "E&xit";
 			this.exitButton.UseVisualStyleBackColor = true;
+			this.exitButton.Click += new System.EventHandler(this.ExitButton_Click);
 			// 
 			// registerButton
 			// 

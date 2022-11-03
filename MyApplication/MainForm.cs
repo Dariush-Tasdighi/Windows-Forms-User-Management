@@ -96,10 +96,7 @@ public partial class MainForm : System.Windows.Forms.Form
 
 	private void ExitToolStripMenuItem_Click(object sender, System.EventArgs e)
 	{
-		//var result =
-		//	System.Windows.Forms.MessageBox.Show("");
-
-		System.Windows.Forms.Application.Exit();
+		Infrastructure.Utility.Exit();
 	}
 
 	private Admin.UsersForm? MyUsersForm { get; set; }
