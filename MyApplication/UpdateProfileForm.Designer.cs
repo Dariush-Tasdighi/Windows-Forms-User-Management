@@ -60,7 +60,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.fullNameTextBox.Location = new System.Drawing.Point(103, 12);
 			this.fullNameTextBox.Name = "fullNameTextBox";
-			this.fullNameTextBox.Size = new System.Drawing.Size(439, 27);
+			this.fullNameTextBox.Size = new System.Drawing.Size(367, 27);
 			this.fullNameTextBox.TabIndex = 1;
 			// 
 			// descriptionTextBox
@@ -72,13 +72,13 @@
 			this.descriptionTextBox.Multiline = true;
 			this.descriptionTextBox.Name = "descriptionTextBox";
 			this.descriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-			this.descriptionTextBox.Size = new System.Drawing.Size(439, 333);
+			this.descriptionTextBox.Size = new System.Drawing.Size(367, 111);
 			this.descriptionTextBox.TabIndex = 3;
 			// 
 			// saveButton
 			// 
 			this.saveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.saveButton.Location = new System.Drawing.Point(103, 384);
+			this.saveButton.Location = new System.Drawing.Point(103, 162);
 			this.saveButton.Name = "saveButton";
 			this.saveButton.Size = new System.Drawing.Size(94, 29);
 			this.saveButton.TabIndex = 4;
@@ -89,7 +89,7 @@
 			// resetButton
 			// 
 			this.resetButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-			this.resetButton.Location = new System.Drawing.Point(203, 384);
+			this.resetButton.Location = new System.Drawing.Point(203, 162);
 			this.resetButton.Name = "resetButton";
 			this.resetButton.Size = new System.Drawing.Size(94, 29);
 			this.resetButton.TabIndex = 5;
@@ -102,7 +102,8 @@
 			this.AcceptButton = this.saveButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(554, 425);
+			this.CancelButton = this.resetButton;
+			this.ClientSize = new System.Drawing.Size(482, 203);
 			this.Controls.Add(this.resetButton);
 			this.Controls.Add(this.saveButton);
 			this.Controls.Add(this.descriptionTextBox);
@@ -110,7 +111,9 @@
 			this.Controls.Add(this.descriptionLabel);
 			this.Controls.Add(this.fullNameLabel);
 			this.MaximizeBox = false;
+			this.MaximumSize = new System.Drawing.Size(800, 250);
 			this.MinimizeBox = false;
+			this.MinimumSize = new System.Drawing.Size(500, 250);
 			this.Name = "UpdateProfileForm";
 			this.Text = "Update Profile";
 			this.Load += new System.EventHandler(this.UpdateProfileForm_Load);

@@ -124,14 +124,14 @@ public partial class UpdateProfileForm : Infrastructure.BaseForm
 
 			databaseContext.SaveChanges();
 
+			System.Windows.Forms.MessageBox
+				.Show(text: "Your profile updated successfully...");
+
 			// **************************************************
 			Infrastructure.Utility.AuthenticatedUser = currentUser;
 
 			Infrastructure.Utility.MainForm.ResetForm();
 			// **************************************************
-
-			System.Windows.Forms.MessageBox
-				.Show(text: "Your profile updated successfully...");
 
 			// استفاده کنیم Close فرم به طور اتوماتیک بسته شود، می‌توانیم از دستور MessageBox اگر بخواهیم بعد از UpdateProfileForm در داخل
 			//Close();

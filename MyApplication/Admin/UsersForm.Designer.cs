@@ -32,7 +32,6 @@
 			this.searchButton = new Dtat.Windows.Forms.Button();
 			this.fullNameLabel = new Dtat.Windows.Forms.Label();
 			this.fullNameTextBox = new Dtat.Windows.Forms.TextBox();
-			this.bottomPanel = new Dtat.Windows.Forms.Panel();
 			this.mainPanel = new Dtat.Windows.Forms.Panel();
 			this.usersDataGridView = new Dtat.Windows.Forms.DataGridView();
 			this.topPanel.SuspendLayout();
@@ -48,7 +47,7 @@
 			this.topPanel.Dock = System.Windows.Forms.DockStyle.Top;
 			this.topPanel.Location = new System.Drawing.Point(0, 0);
 			this.topPanel.Name = "topPanel";
-			this.topPanel.Size = new System.Drawing.Size(800, 85);
+			this.topPanel.Size = new System.Drawing.Size(673, 85);
 			this.topPanel.TabIndex = 0;
 			// 
 			// searchButton
@@ -76,16 +75,8 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.fullNameTextBox.Location = new System.Drawing.Point(94, 12);
 			this.fullNameTextBox.Name = "fullNameTextBox";
-			this.fullNameTextBox.Size = new System.Drawing.Size(694, 27);
+			this.fullNameTextBox.Size = new System.Drawing.Size(567, 27);
 			this.fullNameTextBox.TabIndex = 1;
-			// 
-			// bottomPanel
-			// 
-			this.bottomPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.bottomPanel.Location = new System.Drawing.Point(0, 391);
-			this.bottomPanel.Name = "bottomPanel";
-			this.bottomPanel.Size = new System.Drawing.Size(800, 59);
-			this.bottomPanel.TabIndex = 2;
 			// 
 			// mainPanel
 			// 
@@ -93,7 +84,7 @@
 			this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.mainPanel.Location = new System.Drawing.Point(0, 85);
 			this.mainPanel.Name = "mainPanel";
-			this.mainPanel.Size = new System.Drawing.Size(800, 306);
+			this.mainPanel.Size = new System.Drawing.Size(673, 327);
 			this.mainPanel.TabIndex = 1;
 			// 
 			// usersDataGridView
@@ -104,7 +95,7 @@
 			this.usersDataGridView.Name = "usersDataGridView";
 			this.usersDataGridView.RowHeadersWidth = 51;
 			this.usersDataGridView.RowTemplate.Height = 29;
-			this.usersDataGridView.Size = new System.Drawing.Size(800, 306);
+			this.usersDataGridView.Size = new System.Drawing.Size(673, 327);
 			this.usersDataGridView.TabIndex = 0;
 			this.usersDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.UsersDataGridView_CellDoubleClick);
 			// 
@@ -113,9 +104,8 @@
 			this.AcceptButton = this.searchButton;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(800, 450);
+			this.ClientSize = new System.Drawing.Size(673, 412);
 			this.Controls.Add(this.mainPanel);
-			this.Controls.Add(this.bottomPanel);
 			this.Controls.Add(this.topPanel);
 			this.Name = "UsersForm";
 			this.Text = "Users";

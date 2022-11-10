@@ -53,6 +53,8 @@ public class User : SeedWork.Entity
 
 	[System.ComponentModel.DataAnnotations.Required
 		(AllowEmptyStrings = false)]
+
+	[System.ComponentModel.Browsable(browsable: false)]
 	public string Password { get; set; }
 	// **********
 
