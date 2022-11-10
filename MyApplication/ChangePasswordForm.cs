@@ -11,6 +11,10 @@ namespace MyApplication
 
 		private void ChangePasswordForm_Load(object sender, System.EventArgs e)
 		{
+			if (Infrastructure.Utility.AuthenticatedUser == null)
+			{
+				System.Windows.Forms.Application.Exit();
+			}
 		}
 
 		private void ChangePasswordButton_Click(object sender, System.EventArgs e)
@@ -18,7 +22,6 @@ namespace MyApplication
 			if (Infrastructure.Utility.AuthenticatedUser == null)
 			{
 				System.Windows.Forms.Application.Exit();
-
 				return;
 			}
 
@@ -130,28 +133,9 @@ namespace MyApplication
 				databaseContext =
 					new Data.DatabaseContext();
 
-				//var currentUser =
-				//	databaseContext.Users
-				//	.Where(current => current.Id == Infrastructure.Utility.AuthenticatedUser!.Id)
-				//	.FirstOrDefault();
-
-				//if (Infrastructure.Utility.AuthenticatedUser == null)
-				//{
-				//	System.Windows.Forms.Application.Exit();
-
-				//	return;
-				//}
-				//else
-				//{
-				//	var currentUser =
-				//		databaseContext.Users
-				//		.Where(current => current.Id == Infrastructure.Utility.AuthenticatedUser.Id)
-				//		.FirstOrDefault();
-				//}
-
 				var currentUser =
 					databaseContext.Users
-					.Where(current => current.Id == Infrastructure.Utility.AuthenticatedUser!.Id)
+					.Where(current => current.Id == Infrastructure.Utility.AuthenticatedUser.Id)
 					.FirstOrDefault();
 
 				// **************************************************
@@ -169,7 +153,8 @@ namespace MyApplication
 				// **************************************************
 
 				//if (currentUser.Password != oldPasswordTextBox.Text)
-				if (string.Compare(currentUser.Password, oldPasswordTextBox.Text, ignoreCase: false) != 0)
+				if (string.Compare(currentUser.Password,
+					oldPasswordTextBox.Text, ignoreCase: false) != 0)
 				{
 					System.Windows.Forms.MessageBox
 						.Show(text: "The old password is not correct!");
@@ -184,10 +169,10 @@ namespace MyApplication
 
 				databaseContext.SaveChanges();
 
-				ResetForm();
-
 				System.Windows.Forms.MessageBox
 					.Show(text: "Your password changed successfully.");
+
+				ResetForm();
 
 				//Close();
 			}
