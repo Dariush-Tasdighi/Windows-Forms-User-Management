@@ -16,27 +16,26 @@ internal static class Program
 		// **************************************************
 
 		// **************************************************
-		var mainForm = new LoginForm();
+		//var mainForm = new LoginForm();
 
-		System.Windows.Forms.Application.Run(mainForm: mainForm);
+		//System.Windows.Forms.Application.Run(mainForm: mainForm);
 
-		if (mainForm != null)
-		{
-			if (mainForm.IsDisposed == false)
-			{
-				mainForm.Dispose();
-			}
+		//if (mainForm != null)
+		//{
+		//	if (mainForm.IsDisposed == false)
+		//	{
+		//		mainForm.Dispose();
+		//	}
 
-			//mainForm = null;
-		}
+		//	//mainForm = null;
+		//}
 		// **************************************************
 
-
 		// **************************************************
-		//System.Windows.Forms.Application.Run
-		//	(mainForm: Infrastructure.Utility.LoginForm);
+		System.Windows.Forms.Application.Run
+			(mainForm: Infrastructure.Utility.LoginForm);
 
-		//Infrastructure.Utility.DisposeLoginForm();
+		Infrastructure.Utility.DisposeLoginForm();
 		// **************************************************
 	}
 }

@@ -94,12 +94,8 @@ public static class Utility : object
 	// **************************************************
 	// Solution (4)
 	// **************************************************
-	// **************************************************
-	// **************************************************
 	private static MyApplication.LoginForm? _loginForm;
-	// **************************************************
 
-	// **************************************************
 	/// <summary>
 	/// Lazy Loading = Lazy Initialization
 	/// </summary>
@@ -116,9 +112,7 @@ public static class Utility : object
 			return _loginForm;
 		}
 	}
-	// **************************************************
 
-	// **************************************************
 	public static void DisposeLoginForm()
 	{
 		if (_loginForm != null)
@@ -139,9 +133,7 @@ public static class Utility : object
 	// **************************************************
 	// **************************************************
 	private static MyApplication.RegisterForm? _registerForm;
-	// **************************************************
 
-	// **************************************************
 	/// <summary>
 	/// Lazy Loading = Lazy Initialization
 	/// </summary>
@@ -158,9 +150,7 @@ public static class Utility : object
 			return _registerForm;
 		}
 	}
-	// **************************************************
 
-	// **************************************************
 	public static void DisposeRegisterForm()
 	{
 		if (_registerForm != null)
@@ -181,9 +171,7 @@ public static class Utility : object
 	// **************************************************
 	// **************************************************
 	private static MyApplication.MainForm? _mainForm;
-	// **************************************************
 
-	// **************************************************
 	/// <summary>
 	/// Lazy Loading = Lazy Initialization
 	/// </summary>
@@ -200,9 +188,7 @@ public static class Utility : object
 			return _mainForm;
 		}
 	}
-	// **************************************************
 
-	// **************************************************
 	public static void DisposeMainForm()
 	{
 		if (_mainForm != null)
@@ -215,8 +201,6 @@ public static class Utility : object
 			_mainForm = null;
 		}
 	}
-	// **************************************************
-	// **************************************************
 	// **************************************************
 	// /Solution (4)
 	// **************************************************
@@ -231,7 +215,7 @@ public static class Utility : object
 	public static Domain.User? AuthenticatedUser;
 	// **************************************************
 
-	public static void Exit()
+	public static bool Exit()
 	{
 		var result =
 			System.Windows.Forms.MessageBox.Show
@@ -244,6 +228,12 @@ public static class Utility : object
 		if (result == System.Windows.Forms.DialogResult.Yes)
 		{
 			System.Windows.Forms.Application.Exit();
+
+			return true;
+		}
+		else
+		{
+			return false;
 		}
 	}
 }

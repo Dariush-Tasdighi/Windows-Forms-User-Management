@@ -118,6 +118,7 @@ public partial class UsersForm : Infrastructure.BaseForm
 
 			updateUserForm.ShowDialog();
 
+			// دستور ذیل مهم است، به کاربرد آن دقت کنید
 			Search();
 		}
 	}

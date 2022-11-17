@@ -112,7 +112,7 @@
 			// usersToolStripMenuItem
 			// 
 			this.usersToolStripMenuItem.Name = "usersToolStripMenuItem";
-			this.usersToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+			this.usersToolStripMenuItem.Size = new System.Drawing.Size(127, 26);
 			this.usersToolStripMenuItem.Text = "&Users";
 			this.usersToolStripMenuItem.Click += new System.EventHandler(this.UsersToolStripMenuItem_Click);
 			// 
@@ -146,7 +146,9 @@
 			this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
 			this.Name = "MainForm";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+			this.Text = "User Management";
 			this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
 			this.Load += new System.EventHandler(this.MainForm_Load);
 			this.myMenuStrip.ResumeLayout(false);
 			this.myMenuStrip.PerformLayout();

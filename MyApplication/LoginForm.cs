@@ -255,11 +255,13 @@ public partial class LoginForm : Infrastructure.BaseForm
 
 		// **************************************************
 		//Hide();
+
 		//Infrastructure.Utility.RegisterForm.Show();
 		// **************************************************
 
 		// **************************************************
 		Hide();
+
 		Infrastructure.Utility.RegisterForm.ResetForm();
 		Infrastructure.Utility.RegisterForm.Show();
 		// **************************************************

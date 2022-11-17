@@ -29,6 +29,12 @@ public partial class UpdateUserForm : Infrastructure.BaseForm
 			return;
 		}
 
+		if (Infrastructure.Utility.AuthenticatedUser.IsAdmin == false)
+		{
+			Close();
+			return;
+		}
+
 		if (SelectedUser == null)
 		{
 			Close();
@@ -37,7 +43,7 @@ public partial class UpdateUserForm : Infrastructure.BaseForm
 
 		if (Infrastructure.Utility.AuthenticatedUser.Id == SelectedUser.Id)
 		{
-			deleteButton.Visible = false;
+			deleteButton.Enabled = false;
 			isAdminCheckBox.Enabled = false;
 			isActiveCheckBox.Enabled = false;
 		}
@@ -192,9 +198,8 @@ public partial class UpdateUserForm : Infrastructure.BaseForm
 				return;
 			}
 
-			//databaseContext.Users.Remove(entity: currentUser);
-
 			databaseContext.Remove(entity: currentUser);
+			//databaseContext.Users.Remove(entity: currentUser);
 
 			databaseContext.SaveChanges();
 

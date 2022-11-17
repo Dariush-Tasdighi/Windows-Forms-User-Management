@@ -7,6 +7,8 @@ public partial class MainForm : System.Windows.Forms.Form
 		InitializeComponent();
 	}
 
+	public bool IsClosing { get; set; }
+
 	private void MainForm_Load(object sender, System.EventArgs e)
 	{
 		ResetForm();
@@ -33,7 +35,7 @@ public partial class MainForm : System.Windows.Forms.Form
 			Infrastructure.Utility.AuthenticatedUser.IsAdmin;
 
 		//welcomeToolStripStatusLabel.Text =
-		//	$"Welcome {Infrastructure.Utility.AuthenticatedUser!.Username}";
+		//	$"Welcome {Infrastructure.Utility.AuthenticatedUser.Username}";
 
 		string? userDisplayName =
 			Infrastructure.Utility.AuthenticatedUser.FullName;
@@ -94,11 +96,6 @@ public partial class MainForm : System.Windows.Forms.Form
 		Infrastructure.Utility.LoginForm.ResetForm();
 	}
 
-	private void ExitToolStripMenuItem_Click(object sender, System.EventArgs e)
-	{
-		Infrastructure.Utility.Exit();
-	}
-
 	private Admin.UsersForm? MyUsersForm { get; set; }
 
 	private void UsersToolStripMenuItem_Click(object sender, System.EventArgs e)
@@ -112,5 +109,22 @@ public partial class MainForm : System.Windows.Forms.Form
 		}
 
 		MyUsersForm.Show();
+	}
+
+	private void ExitToolStripMenuItem_Click(object sender, System.EventArgs e)
+	{
+		IsClosing = true;
+
+		Infrastructure.Utility.Exit();
+	}
+
+	private void MainForm_FormClosing
+		(object sender, System.Windows.Forms.FormClosingEventArgs e)
+	{
+		if (IsClosing == false)
+		{
+			// بی خیال شو - شتر دیدی ندیدی
+			e.Cancel = true;
+		}
 	}
 }
