@@ -9,7 +9,8 @@ namespace MyApplication
 			InitializeComponent();
 		}
 
-		private void ChangePasswordForm_Load(object sender, System.EventArgs e)
+		private void ChangePasswordForm_Load
+			(object sender, System.EventArgs e)
 		{
 			if (Infrastructure.Utility.AuthenticatedUser == null)
 			{
@@ -19,12 +20,6 @@ namespace MyApplication
 
 		private void ChangePasswordButton_Click(object sender, System.EventArgs e)
 		{
-			if (Infrastructure.Utility.AuthenticatedUser == null)
-			{
-				System.Windows.Forms.Application.Exit();
-				return;
-			}
-
 			// **************************************************
 			// **************************************************
 			// **************************************************
@@ -39,7 +34,9 @@ namespace MyApplication
 			confirmNewPasswordTextBox.Text =
 				Infrastructure.Utility.FixText
 				(text: confirmNewPasswordTextBox.Text);
+			// **************************************************
 
+			// **************************************************
 			var errorMessages = string.Empty;
 
 			if (oldPasswordTextBox.Text == string.Empty)
@@ -124,6 +121,12 @@ namespace MyApplication
 			// **************************************************
 			// **************************************************
 
+			if (Infrastructure.Utility.AuthenticatedUser == null)
+			{
+				System.Windows.Forms.Application.Exit();
+				return;
+			}
+
 			// از این قسمت به بعد باید سر کلاس نوشته شود
 
 			Data.DatabaseContext? databaseContext = null;
@@ -164,10 +167,12 @@ namespace MyApplication
 					return;
 				}
 
+				// **************************************************
 				currentUser.Password =
 					newPasswordTextBox.Text;
 
 				databaseContext.SaveChanges();
+				// **************************************************
 
 				System.Windows.Forms.MessageBox
 					.Show(text: "Your password changed successfully.");
@@ -183,15 +188,13 @@ namespace MyApplication
 			}
 			finally
 			{
-				if (databaseContext != null)
-				{
-					databaseContext.Dispose();
-					databaseContext = null;
-				}
+				databaseContext?.Dispose();
+				databaseContext = null;
 			}
 		}
 
-		private void ResetButton_Click(object sender, System.EventArgs e)
+		private void ResetButton_Click
+			(object sender, System.EventArgs e)
 		{
 			ResetForm();
 		}

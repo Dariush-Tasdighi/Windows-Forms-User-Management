@@ -21,7 +21,8 @@ public partial class LoginForm : Infrastructure.BaseForm
 			Infrastructure.Utility
 			.FixText(text: passwordTextBox.Text);
 
-		if (usernameTextBox.Text == string.Empty || passwordTextBox.Text == string.Empty)
+		if (usernameTextBox.Text == string.Empty
+			|| passwordTextBox.Text == string.Empty)
 		{
 			var errorMessage =
 				"Username and Password are requied!";
@@ -66,11 +67,24 @@ public partial class LoginForm : Infrastructure.BaseForm
 		//}
 		//finally
 		//{
-		//	if (databaseContext != null)
-		//	{
-		//		databaseContext.Dispose();
-		//		databaseContext = null;
-		//	}
+		//	//if (databaseContext != null)
+		//	//{
+		//	//	databaseContext.Dispose();
+		//	//	databaseContext = null;
+		//	//}
+
+		//	//if (databaseContext is not null)
+		//	//{
+		//	//	databaseContext.Dispose();
+		//	//	databaseContext = null;
+		//	//}
+
+		//	//if (databaseContext is not null)
+		//	//{
+		//	//	databaseContext.Dispose();
+		//	//}
+
+		//	databaseContext?.Dispose();
 		//}
 		// **************************************************
 
@@ -83,9 +97,9 @@ public partial class LoginForm : Infrastructure.BaseForm
 
 			//var foundedUser =
 			//	databaseContext.Users
-			//	// Where() -> using System.Linq;
+			//	// using System.Linq;
 			//	.Where(current => current.Username == usernameTextBox.Text)
-			//	// FirstOrDefault() -> using System.Linq;
+			//	// using System.Linq;
 			//	.FirstOrDefault();
 
 			// کار نمی‌کند EF Core در
@@ -174,19 +188,17 @@ public partial class LoginForm : Infrastructure.BaseForm
 			mainForm.Show();
 			// **************************************************
 
-			//// **************************************************
-			//// **************************************************
-			//// **************************************************
+			// **************************************************
+			// *** روش هوشمندانه ********************************
+			// **************************************************
 			//Infrastructure.Utility.AuthenticatedUser = foundedUser;
-			//// **************************************************
 
-			//// **************************************************
 			//Hide();
 			//Infrastructure.Utility.MainForm.ResetForm();
 			//Infrastructure.Utility.MainForm.Show();
-			//// **************************************************
-			//// **************************************************
-			//// **************************************************
+			// **************************************************
+			// **************************************************
+			// **************************************************
 		}
 		catch (System.Exception ex)
 		{
@@ -195,11 +207,18 @@ public partial class LoginForm : Infrastructure.BaseForm
 		}
 		finally
 		{
-			if (databaseContext != null)
-			{
-				databaseContext.Dispose();
-				databaseContext = null;
-			}
+			//if (databaseContext != null)
+			//{
+			//	databaseContext.Dispose();
+			//	databaseContext = null;
+			//}
+
+			//if (databaseContext != null)
+			//{
+			//	databaseContext.Dispose();
+			//}
+
+			databaseContext?.Dispose();
 		}
 	}
 

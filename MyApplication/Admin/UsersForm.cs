@@ -9,7 +9,8 @@ public partial class UsersForm : Infrastructure.BaseForm
 		InitializeComponent();
 	}
 
-	private void UsersForm_Load(object sender, System.EventArgs e)
+	private void UsersForm_Load
+		(object sender, System.EventArgs e)
 	{
 		usersDataGridView.SelectionMode =
 			System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -18,7 +19,8 @@ public partial class UsersForm : Infrastructure.BaseForm
 			System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
 	}
 
-	private void SearchButton_Click(object sender, System.EventArgs e)
+	private void SearchButton_Click
+		(object sender, System.EventArgs e)
 	{
 		Search();
 	}
@@ -38,7 +40,7 @@ public partial class UsersForm : Infrastructure.BaseForm
 
 			//var users = null;
 
-			System.Collections.Generic.List<Domain.User>? users = null;
+			System.Collections.Generic.List<Domain.User> users;
 
 			if (fullNameTextBox.Text == string.Empty)
 			{
@@ -49,6 +51,18 @@ public partial class UsersForm : Infrastructure.BaseForm
 			}
 			else
 			{
+				//users =
+				//	databaseContext.Users
+				//	.Where(current => current.FullName == fullNameTextBox.Text)
+				//	.ToList()
+				//	;
+
+				//users =
+				//	databaseContext.Users
+				//	.Where(current => current.FullName.ToLower() == fullNameTextBox.Text.ToLower())
+				//	.ToList()
+				//	;
+
 				//users =
 				//	databaseContext.Users
 				//	.Where(current => current.FullName != null &&

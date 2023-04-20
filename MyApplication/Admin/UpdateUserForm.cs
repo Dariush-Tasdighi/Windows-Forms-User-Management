@@ -11,12 +11,14 @@ public partial class UpdateUserForm : Infrastructure.BaseForm
 
 	public Domain.User? SelectedUser { get; set; }
 
-	private void UpdateUserForm_Load(object sender, System.EventArgs e)
+	private void UpdateUserForm_Load
+		(object sender, System.EventArgs e)
 	{
 		ResetForm();
 	}
 
-	private void ResetButton_Click(object sender, System.EventArgs e)
+	private void ResetButton_Click
+		(object sender, System.EventArgs e)
 	{
 		ResetForm();
 	}
@@ -82,15 +84,13 @@ public partial class UpdateUserForm : Infrastructure.BaseForm
 		}
 		finally
 		{
-			if (databaseContext != null)
-			{
-				databaseContext.Dispose();
-				databaseContext = null;
-			}
+			databaseContext?.Dispose();
+			databaseContext = null;
 		}
 	}
 
-	private void UpdateButton_Click(object sender, System.EventArgs e)
+	private void UpdateButton_Click
+		(object sender, System.EventArgs e)
 	{
 		if (Infrastructure.Utility.AuthenticatedUser == null)
 		{
@@ -158,15 +158,13 @@ public partial class UpdateUserForm : Infrastructure.BaseForm
 		}
 		finally
 		{
-			if (databaseContext != null)
-			{
-				databaseContext.Dispose();
-				databaseContext = null;
-			}
+			databaseContext?.Dispose();
+			databaseContext = null;
 		}
 	}
 
-	private void DeleteButton_Click(object sender, System.EventArgs e)
+	private void DeleteButton_Click
+		(object sender, System.EventArgs e)
 	{
 		if (Infrastructure.Utility.AuthenticatedUser == null)
 		{
@@ -215,11 +213,8 @@ public partial class UpdateUserForm : Infrastructure.BaseForm
 		}
 		finally
 		{
-			if (databaseContext != null)
-			{
-				databaseContext.Dispose();
-				databaseContext = null;
-			}
+			databaseContext?.Dispose();
+			databaseContext = null;
 		}
 	}
 }

@@ -19,7 +19,7 @@ public class DatabaseContext : Microsoft.EntityFrameworkCore.DbContext
 		(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder optionsBuilder)
 	{
 		var connectionString =
-			"Server=.;Database=USER_MANAGEMENT;MultipleActiveResultSets=true;User ID=sa;Password=1234512345;";
+			"Server=.;User ID=sa;Password=1234512345;Database=USER_MANAGEMENT;MultipleActiveResultSets=true;TrustServerCertificate=True;";
 
 		// UseSqlServer() -> using Microsoft.EntityFrameworkCore;
 		optionsBuilder.UseSqlServer

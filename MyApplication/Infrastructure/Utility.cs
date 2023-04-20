@@ -38,7 +38,7 @@ public static class Utility : object
 
 	public static string FixText(string? text)
 	{
-		if (string.IsNullOrEmpty(value: text))
+		if (string.IsNullOrWhiteSpace(value: text))
 		{
 			return string.Empty;
 		}

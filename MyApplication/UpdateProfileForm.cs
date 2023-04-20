@@ -74,15 +74,13 @@ public partial class UpdateProfileForm : Infrastructure.BaseForm
 		}
 		finally
 		{
-			if (databaseContext != null)
-			{
-				databaseContext.Dispose();
-				databaseContext = null;
-			}
+			databaseContext?.Dispose();
+			databaseContext = null;
 		}
 	}
 
-	private void SaveButton_Click(object sender, System.EventArgs e)
+	private void SaveButton_Click
+		(object sender, System.EventArgs e)
 	{
 		if (Infrastructure.Utility.AuthenticatedUser == null)
 		{
@@ -116,6 +114,17 @@ public partial class UpdateProfileForm : Infrastructure.BaseForm
 			}
 			// **************************************************
 
+			// **************************************************
+			fullNameTextBox.Text =
+				Infrastructure.Utility.FixText
+				(text: fullNameTextBox.Text);
+
+			descriptionTextBox.Text =
+				Infrastructure.Utility.FixText
+				(text: descriptionTextBox.Text);
+			// **************************************************
+
+			// **************************************************
 			currentUser.FullName =
 				fullNameTextBox.Text;
 
@@ -123,6 +132,7 @@ public partial class UpdateProfileForm : Infrastructure.BaseForm
 				descriptionTextBox.Text;
 
 			databaseContext.SaveChanges();
+			// **************************************************
 
 			System.Windows.Forms.MessageBox
 				.Show(text: "Your profile updated successfully...");

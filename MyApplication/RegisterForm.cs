@@ -26,7 +26,8 @@ public partial class RegisterForm : Infrastructure.BaseForm
 			Infrastructure.Utility
 			.FixText(text: fullNameTextBox.Text);
 
-		if (usernameTextBox.Text == string.Empty || passwordTextBox.Text == string.Empty)
+		if (usernameTextBox.Text == string.Empty
+			|| passwordTextBox.Text == string.Empty)
 		{
 			var errorMessage =
 				"Username and Password are requied!";
@@ -70,7 +71,8 @@ public partial class RegisterForm : Infrastructure.BaseForm
 		// اگر خطایی وجود داشت
 		if (errorMessages != string.Empty)
 		{
-			System.Windows.Forms.MessageBox.Show(text: errorMessages);
+			System.Windows.Forms
+				.MessageBox.Show(text: errorMessages);
 
 			usernameTextBox.Focus();
 
@@ -101,7 +103,8 @@ public partial class RegisterForm : Infrastructure.BaseForm
 				var errorMessage =
 					"This username is already exist! Please choose another one.";
 
-				System.Windows.Forms.MessageBox.Show(text: errorMessage);
+				System.Windows.Forms
+					.MessageBox.Show(text: errorMessage);
 
 				usernameTextBox.Focus();
 
@@ -127,9 +130,9 @@ public partial class RegisterForm : Infrastructure.BaseForm
 				.Show(text: "Registration Done!");
 
 			// **************************************************
+			//fullNameTextBox.Text = string.Empty;
 			//passwordTextBox.Text = string.Empty;
 			//usernameTextBox.Text = string.Empty;
-			//fullNameTextBox.Text = string.Empty;
 
 			//usernameTextBox.Focus();
 			// **************************************************
@@ -155,19 +158,16 @@ public partial class RegisterForm : Infrastructure.BaseForm
 		}
 		finally
 		{
-			if (databaseContext != null)
-			{
-				databaseContext.Dispose();
-				databaseContext = null;
-			}
+			databaseContext?.Dispose();
 		}
 	}
 
-	private void ResetButton_Click(object sender, System.EventArgs e)
+	private void ResetButton_Click
+		(object sender, System.EventArgs e)
 	{
+		//fullNameTextBox.Text = string.Empty;
 		//passwordTextBox.Text = string.Empty;
 		//usernameTextBox.Text = string.Empty;
-		//fullNameTextBox.Text = string.Empty;
 
 		//usernameTextBox.Focus();
 

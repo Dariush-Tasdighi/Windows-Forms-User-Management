@@ -4,12 +4,11 @@ public abstract class Entity : object
 {
 	public Entity() : base()
 	{
-		// دستور ذیل غلط می‌باشد
-		//Id =
-		//	new System.Guid();
+		Id = System
+			.Guid.NewGuid();
 
-		Id =
-			System.Guid.NewGuid();
+		// دستور ذیل غلط می‌باشد
+		//Id = new System.Guid();
 	}
 
 	// **********
