@@ -1,16 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace Data;
+namespace Persistence;
 
 public class DatabaseContext : Microsoft.EntityFrameworkCore.DbContext
 {
-#pragma warning disable CS8618
 	public DatabaseContext() : base()
-#pragma warning restore CS8618
 	{
-		// **************************************************
 		Database.EnsureCreated();
-		// **************************************************
 	}
 
 	public Microsoft.EntityFrameworkCore.DbSet<Domain.User> Users { get; set; }

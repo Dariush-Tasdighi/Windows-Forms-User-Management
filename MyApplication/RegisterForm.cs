@@ -86,19 +86,19 @@ public partial class RegisterForm : Infrastructure.BaseForm
 		// در ضمن، دقت کنید، چون دستورات فوق را سر کلاس نمی‌نویسید
 		// در زمان ورود اطلاعات، برای ثبت‌نام، داده‌های درستی را خودتان وارد کنید
 
-		Data.DatabaseContext? databaseContext = null;
+		Persistence.DatabaseContext? databaseContext = null;
 
 		try
 		{
 			databaseContext =
-				new Data.DatabaseContext();
+				new Persistence.DatabaseContext();
 
 			var foundedUser =
 				databaseContext.Users
 				.Where(current => current.Username.ToLower() == usernameTextBox.Text.ToLower())
 				.FirstOrDefault();
 
-			if (foundedUser != null)
+			if (foundedUser is not null)
 			{
 				var errorMessage =
 					"This username is already exist! Please choose another one.";

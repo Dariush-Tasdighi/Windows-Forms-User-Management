@@ -1,4 +1,4 @@
-﻿namespace Data.Configurations;
+﻿namespace Persistence.Configurations;
 
 internal class UserConfiguration : object,
 	Microsoft.EntityFrameworkCore.IEntityTypeConfiguration<Domain.User>

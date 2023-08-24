@@ -27,12 +27,12 @@ public partial class UsersForm : Infrastructure.BaseForm
 
 	private void Search()
 	{
-		Data.DatabaseContext? databaseContext = null;
+		Persistence.DatabaseContext? databaseContext = null;
 
 		try
 		{
 			databaseContext =
-				new Data.DatabaseContext();
+				new Persistence.DatabaseContext();
 
 			fullNameTextBox.Text =
 				Infrastructure.Utility

@@ -50,12 +50,12 @@ public partial class UpdateUserForm : Infrastructure.BaseForm
 			isActiveCheckBox.Enabled = false;
 		}
 
-		Data.DatabaseContext? databaseContext = null;
+		Persistence.DatabaseContext? databaseContext = null;
 
 		try
 		{
 			databaseContext =
-				new Data.DatabaseContext();
+				new Persistence.DatabaseContext();
 
 			var currentUser =
 				databaseContext.Users
@@ -104,12 +104,12 @@ public partial class UpdateUserForm : Infrastructure.BaseForm
 			return;
 		}
 
-		Data.DatabaseContext? databaseContext = null;
+		Persistence.DatabaseContext? databaseContext = null;
 
 		try
 		{
 			databaseContext =
-				new Data.DatabaseContext();
+				new Persistence.DatabaseContext();
 
 			var currentUser =
 				databaseContext.Users
@@ -178,12 +178,12 @@ public partial class UpdateUserForm : Infrastructure.BaseForm
 			return;
 		}
 
-		Data.DatabaseContext? databaseContext = null;
+		Persistence.DatabaseContext? databaseContext = null;
 
 		try
 		{
 			databaseContext =
-				new Data.DatabaseContext();
+				new Persistence.DatabaseContext();
 
 			var currentUser =
 				databaseContext.Users

@@ -129,12 +129,12 @@ namespace MyApplication
 
 			// از این قسمت به بعد باید سر کلاس نوشته شود
 
-			Data.DatabaseContext? databaseContext = null;
+			Persistence.DatabaseContext? databaseContext = null;
 
 			try
 			{
 				databaseContext =
-					new Data.DatabaseContext();
+					new Persistence.DatabaseContext();
 
 				var currentUser =
 					databaseContext.Users

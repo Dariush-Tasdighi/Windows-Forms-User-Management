@@ -35,12 +35,12 @@ public partial class UpdateProfileForm : Infrastructure.BaseForm
 		//	Infrastructure.Utility.AuthenticatedUser.Description;
 		// **************************************************
 
-		Data.DatabaseContext? databaseContext = null;
+		Persistence.DatabaseContext? databaseContext = null;
 
 		try
 		{
 			databaseContext =
-				new Data.DatabaseContext();
+				new Persistence.DatabaseContext();
 
 			var currentUser =
 				databaseContext.Users
@@ -88,12 +88,12 @@ public partial class UpdateProfileForm : Infrastructure.BaseForm
 			return;
 		}
 
-		Data.DatabaseContext? databaseContext = null;
+		Persistence.DatabaseContext? databaseContext = null;
 
 		try
 		{
 			databaseContext =
-				new Data.DatabaseContext();
+				new Persistence.DatabaseContext();
 
 			var currentUser =
 				databaseContext.Users

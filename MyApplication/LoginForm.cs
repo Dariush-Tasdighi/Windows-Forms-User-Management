@@ -25,7 +25,7 @@ public partial class LoginForm : Infrastructure.BaseForm
 			|| passwordTextBox.Text == string.Empty)
 		{
 			var errorMessage =
-				"Username and Password are requied!";
+				"Username and Password are required!";
 
 			System.Windows.Forms.MessageBox.Show(text: errorMessage);
 
@@ -47,12 +47,12 @@ public partial class LoginForm : Infrastructure.BaseForm
 		// **************************************************
 
 		// **************************************************
-		//Data.DatabaseContext? databaseContext = null;
+		//Persistence.DatabaseContext? databaseContext = null;
 
 		//try
 		//{
 		//	databaseContext =
-		//		new Data.DatabaseContext();
+		//		new Persistence.DatabaseContext();
 
 		//	// کار می‌کنیم databaseContext با
 		//}
@@ -88,12 +88,12 @@ public partial class LoginForm : Infrastructure.BaseForm
 		//}
 		// **************************************************
 
-		Data.DatabaseContext? databaseContext = null;
+		Persistence.DatabaseContext? databaseContext = null;
 
 		try
 		{
 			databaseContext =
-				new Data.DatabaseContext();
+				new Persistence.DatabaseContext();
 
 			//var foundedUser =
 			//	databaseContext.Users
@@ -165,7 +165,7 @@ public partial class LoginForm : Infrastructure.BaseForm
 			}
 
 			// **************************************************
-			//System.Windows.Forms.MessageBox.Show(text: "Welcome!");
+			System.Windows.Forms.MessageBox.Show(text: "Welcome!");
 			// **************************************************
 
 			// **************************************************
@@ -180,12 +180,12 @@ public partial class LoginForm : Infrastructure.BaseForm
 			// **************************************************
 			// روش احمقانه
 			// **************************************************
-			Infrastructure.Utility.AuthenticatedUser = foundedUser;
+			//Infrastructure.Utility.AuthenticatedUser = foundedUser;
 
-			Hide();
+			//Hide();
 
-			var mainForm = new MainForm();
-			mainForm.Show();
+			//var mainForm = new MainForm();
+			//mainForm.Show();
 			// **************************************************
 
 			// **************************************************
@@ -207,17 +207,6 @@ public partial class LoginForm : Infrastructure.BaseForm
 		}
 		finally
 		{
-			//if (databaseContext != null)
-			//{
-			//	databaseContext.Dispose();
-			//	databaseContext = null;
-			//}
-
-			//if (databaseContext != null)
-			//{
-			//	databaseContext.Dispose();
-			//}
-
 			databaseContext?.Dispose();
 		}
 	}
