@@ -153,11 +153,8 @@ public partial class UpdateProfileForm : Infrastructure.BaseForm
 		}
 		finally
 		{
-			if (databaseContext != null)
-			{
-				databaseContext.Dispose();
-				databaseContext = null;
-			}
+			databaseContext?.Dispose();
+			databaseContext = null;
 		}
 	}
 }

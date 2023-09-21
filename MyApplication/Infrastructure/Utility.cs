@@ -206,6 +206,15 @@ public static class Utility : object
 	// **************************************************
 
 	// **************************************************
+	//public static System.Guid? UserId;
+	// **************************************************
+
+	// **************************************************
+	//public static string? Username;
+	//public static System.Guid? UserId;
+	// **************************************************
+
+	// **************************************************
 	//public static string? Username;
 	//public static string? FullName;
 	//public static System.Guid? UserId;

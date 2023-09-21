@@ -165,7 +165,7 @@ public partial class LoginForm : Infrastructure.BaseForm
 			}
 
 			// **************************************************
-			System.Windows.Forms.MessageBox.Show(text: "Welcome!");
+			//System.Windows.Forms.MessageBox.Show(text: "Welcome!");
 			// **************************************************
 
 			// **************************************************
@@ -180,12 +180,12 @@ public partial class LoginForm : Infrastructure.BaseForm
 			// **************************************************
 			// روش احمقانه
 			// **************************************************
-			//Infrastructure.Utility.AuthenticatedUser = foundedUser;
+			Infrastructure.Utility.AuthenticatedUser = foundedUser;
 
-			//Hide();
+			Hide();
 
-			//var mainForm = new MainForm();
-			//mainForm.Show();
+			var mainForm = new MainForm();
+			mainForm.Show();
 			// **************************************************
 
 			// **************************************************
