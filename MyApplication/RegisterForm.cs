@@ -121,7 +121,10 @@ public partial class RegisterForm : Infrastructure.BaseForm
 					FullName = fullNameTextBox.Text,
 				};
 
+			// EF Core
 			databaseContext.Add(entity: newUser);
+
+			// EF / EF Core
 			//databaseContext.Users.Add(entity: newUser);
 
 			databaseContext.SaveChanges();
@@ -159,6 +162,7 @@ public partial class RegisterForm : Infrastructure.BaseForm
 		finally
 		{
 			databaseContext?.Dispose();
+			databaseContext = null;
 		}
 	}
 

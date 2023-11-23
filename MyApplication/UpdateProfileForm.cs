@@ -21,7 +21,7 @@ public partial class UpdateProfileForm : Infrastructure.BaseForm
 
 	private void ResetForm()
 	{
-		if (Infrastructure.Utility.AuthenticatedUser == null)
+		if (Infrastructure.Utility.AuthenticatedUser is null)
 		{
 			System.Windows.Forms.Application.Exit();
 			return;
@@ -48,7 +48,7 @@ public partial class UpdateProfileForm : Infrastructure.BaseForm
 				.FirstOrDefault();
 
 			// **************************************************
-			if (currentUser == null)
+			if (currentUser is null)
 			{
 				System.Windows.Forms.Application.Exit();
 				return;
@@ -82,7 +82,7 @@ public partial class UpdateProfileForm : Infrastructure.BaseForm
 	private void SaveButton_Click
 		(object sender, System.EventArgs e)
 	{
-		if (Infrastructure.Utility.AuthenticatedUser == null)
+		if (Infrastructure.Utility.AuthenticatedUser is null)
 		{
 			System.Windows.Forms.Application.Exit();
 			return;
@@ -101,7 +101,7 @@ public partial class UpdateProfileForm : Infrastructure.BaseForm
 				.FirstOrDefault();
 
 			// **************************************************
-			if (currentUser == null)
+			if (currentUser is null)
 			{
 				System.Windows.Forms.Application.Exit();
 				return;

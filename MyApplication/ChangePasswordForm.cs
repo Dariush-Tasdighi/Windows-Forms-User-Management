@@ -12,7 +12,7 @@ namespace MyApplication
 		private void ChangePasswordForm_Load
 			(object sender, System.EventArgs e)
 		{
-			if (Infrastructure.Utility.AuthenticatedUser == null)
+			if (Infrastructure.Utility.AuthenticatedUser is null)
 			{
 				System.Windows.Forms.Application.Exit();
 			}
@@ -121,7 +121,7 @@ namespace MyApplication
 			// **************************************************
 			// **************************************************
 
-			if (Infrastructure.Utility.AuthenticatedUser == null)
+			if (Infrastructure.Utility.AuthenticatedUser is null)
 			{
 				System.Windows.Forms.Application.Exit();
 				return;
@@ -142,7 +142,7 @@ namespace MyApplication
 					.FirstOrDefault();
 
 				// **************************************************
-				if (currentUser == null)
+				if (currentUser is null)
 				{
 					System.Windows.Forms.Application.Exit();
 					return;

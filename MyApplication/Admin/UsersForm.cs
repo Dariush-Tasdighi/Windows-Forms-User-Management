@@ -38,7 +38,8 @@ public partial class UsersForm : Infrastructure.BaseForm
 				Infrastructure.Utility
 				.FixText(text: fullNameTextBox.Text);
 
-			//var users = null;
+			//var users; // Compile Error!
+			//var users = null; // Compile Error!
 
 			System.Collections.Generic.List<Domain.User> users;
 
@@ -113,11 +114,16 @@ public partial class UsersForm : Infrastructure.BaseForm
 	private void UsersDataGridView_CellDoubleClick
 		(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
 	{
+		// روش احمقانه
+		//var selectedUser =
+		//	(Domain.User)usersDataGridView.Rows[e.RowIndex].DataBoundItem;
+
+		// روش هوشمندانه
 		var selectedUser =
 			usersDataGridView.Rows[e.RowIndex].DataBoundItem as
 			Domain.User;
 
-		if (selectedUser != null)
+		if (selectedUser is not null)
 		{
 			//System.Windows.Forms.MessageBox.Show(selectedUser.Username);
 

@@ -1,4 +1,4 @@
-﻿namespace Domain.SeedWork;
+﻿namespace Domain.Seedwork;
 
 public abstract class Entity : object
 {
@@ -24,7 +24,8 @@ public abstract class Entity : object
 	// **********
 
 	// **********
-	[System.ComponentModel.Browsable(browsable: false)]
+	[System.ComponentModel.Browsable
+		(browsable: false)]
 
 	[System.ComponentModel.DataAnnotations.Schema.DatabaseGenerated
 		(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None)]

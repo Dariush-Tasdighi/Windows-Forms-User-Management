@@ -25,7 +25,7 @@ public partial class UpdateUserForm : Infrastructure.BaseForm
 
 	private void ResetForm()
 	{
-		if (Infrastructure.Utility.AuthenticatedUser == null)
+		if (Infrastructure.Utility.AuthenticatedUser is null)
 		{
 			System.Windows.Forms.Application.Exit();
 			return;
@@ -37,7 +37,7 @@ public partial class UpdateUserForm : Infrastructure.BaseForm
 			return;
 		}
 
-		if (SelectedUser == null)
+		if (SelectedUser is null)
 		{
 			Close();
 			return;
@@ -62,7 +62,7 @@ public partial class UpdateUserForm : Infrastructure.BaseForm
 				.Where(current => current.Id == SelectedUser.Id)
 				.FirstOrDefault();
 
-			if (currentUser == null)
+			if (currentUser is null)
 			{
 				Close();
 				return;
@@ -92,13 +92,13 @@ public partial class UpdateUserForm : Infrastructure.BaseForm
 	private void UpdateButton_Click
 		(object sender, System.EventArgs e)
 	{
-		if (Infrastructure.Utility.AuthenticatedUser == null)
+		if (Infrastructure.Utility.AuthenticatedUser is null)
 		{
 			System.Windows.Forms.Application.Exit();
 			return;
 		}
 
-		if (SelectedUser == null)
+		if (SelectedUser is null)
 		{
 			Close();
 			return;
@@ -116,7 +116,7 @@ public partial class UpdateUserForm : Infrastructure.BaseForm
 				.Where(current => current.Id == SelectedUser.Id)
 				.FirstOrDefault();
 
-			if (currentUser == null)
+			if (currentUser is null)
 			{
 				Close();
 				return;
@@ -166,13 +166,13 @@ public partial class UpdateUserForm : Infrastructure.BaseForm
 	private void DeleteButton_Click
 		(object sender, System.EventArgs e)
 	{
-		if (Infrastructure.Utility.AuthenticatedUser == null)
+		if (Infrastructure.Utility.AuthenticatedUser is null)
 		{
 			System.Windows.Forms.Application.Exit();
 			return;
 		}
 
-		if (SelectedUser == null)
+		if (SelectedUser is null)
 		{
 			Close();
 			return;
@@ -190,13 +190,16 @@ public partial class UpdateUserForm : Infrastructure.BaseForm
 				.Where(current => current.Id == SelectedUser.Id)
 				.FirstOrDefault();
 
-			if (currentUser == null)
+			if (currentUser is null)
 			{
 				Close();
 				return;
 			}
 
+			// EF Core
 			databaseContext.Remove(entity: currentUser);
+
+			// EF / EF Core
 			//databaseContext.Users.Remove(entity: currentUser);
 
 			databaseContext.SaveChanges();

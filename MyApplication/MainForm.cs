@@ -16,7 +16,7 @@ public partial class MainForm : System.Windows.Forms.Form
 
 	public void ResetForm()
 	{
-		if (Infrastructure.Utility.AuthenticatedUser == null)
+		if (Infrastructure.Utility.AuthenticatedUser is null)
 		{
 			System.Windows.Forms.Application.Exit();
 			return;
@@ -61,7 +61,7 @@ public partial class MainForm : System.Windows.Forms.Form
 
 		// روش هوشمندانه
 
-		if (MyChangePasswordForm == null || MyChangePasswordForm.IsDisposed)
+		if (MyChangePasswordForm is null || MyChangePasswordForm.IsDisposed)
 		{
 			MyChangePasswordForm = new ChangePasswordForm
 			{
@@ -76,7 +76,7 @@ public partial class MainForm : System.Windows.Forms.Form
 
 	private void UpdateProfileToolStripMenuItem_Click(object sender, System.EventArgs e)
 	{
-		if (MyUpdateProfileForm == null || MyUpdateProfileForm.IsDisposed)
+		if (MyUpdateProfileForm is null || MyUpdateProfileForm.IsDisposed)
 		{
 			MyUpdateProfileForm = new UpdateProfileForm
 			{
@@ -100,7 +100,7 @@ public partial class MainForm : System.Windows.Forms.Form
 
 	private void UsersToolStripMenuItem_Click(object sender, System.EventArgs e)
 	{
-		if (MyUsersForm == null || MyUsersForm.IsDisposed)
+		if (MyUsersForm is null || MyUsersForm.IsDisposed)
 		{
 			MyUsersForm = new Admin.UsersForm
 			{

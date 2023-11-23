@@ -1,6 +1,6 @@
 ﻿namespace Domain;
 
-public class User : SeedWork.Entity
+public class User : Seedwork.Entity
 {
 	//public User() : base()
 	//{
@@ -42,6 +42,9 @@ public class User : SeedWork.Entity
 	// **********
 
 	// **********
+	[System.ComponentModel.Browsable
+		(browsable: false)]
+
 	//[System.ComponentModel.DataAnnotations.MaxLength
 	//	(length: 40)]
 
@@ -53,8 +56,6 @@ public class User : SeedWork.Entity
 
 	[System.ComponentModel.DataAnnotations.Required
 		(AllowEmptyStrings = false)]
-
-	[System.ComponentModel.Browsable(browsable: false)]
 	public string Password { get; set; }
 	// **********
 
@@ -71,7 +72,8 @@ public class User : SeedWork.Entity
 	// **********
 
 	// **********
-	[System.ComponentModel.Browsable(browsable: false)]
+	[System.ComponentModel.Browsable
+		(browsable: false)]
 	public string? Description { get; set; }
 	// **********
 }

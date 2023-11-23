@@ -13,7 +13,7 @@ public static class Utility : object
 
 	//public static string? FixText(string? text)
 	//{
-	//	if (text == null)
+	//	if (text is null)
 	//	{
 	//		return null;
 	//	}
@@ -103,7 +103,7 @@ public static class Utility : object
 	{
 		get
 		{
-			if (_loginForm == null || _loginForm.IsDisposed)
+			if (_loginForm is null || _loginForm.IsDisposed)
 			{
 				_loginForm =
 					new MyApplication.LoginForm();
@@ -141,7 +141,7 @@ public static class Utility : object
 	{
 		get
 		{
-			if (_registerForm == null || _registerForm.IsDisposed)
+			if (_registerForm is null || _registerForm.IsDisposed)
 			{
 				_registerForm =
 					new MyApplication.RegisterForm();
@@ -179,7 +179,7 @@ public static class Utility : object
 	{
 		get
 		{
-			if (_mainForm == null || _mainForm.IsDisposed)
+			if (_mainForm is null || _mainForm.IsDisposed)
 			{
 				_mainForm =
 					new MyApplication.MainForm();

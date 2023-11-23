@@ -121,7 +121,6 @@
 		#endregion
 
 		private Dtat.Windows.Forms.Panel topPanel;
-		private Dtat.Windows.Forms.Panel bottomPanel;
 		private Dtat.Windows.Forms.Panel mainPanel;
 		private Dtat.Windows.Forms.DataGridView usersDataGridView;
 		private Dtat.Windows.Forms.Button searchButton;

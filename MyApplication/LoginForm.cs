@@ -113,7 +113,7 @@ public partial class LoginForm : Infrastructure.BaseForm
 				.Where(current => current.Username.ToLower() == usernameTextBox.Text.ToLower())
 				.FirstOrDefault();
 
-			if (foundedUser == null)
+			if (foundedUser is null)
 			{
 				// پیغام ذیل کاملا دقیق بوده، ولی از نظر مسائل امنیتی صلاح نیست
 
@@ -208,6 +208,7 @@ public partial class LoginForm : Infrastructure.BaseForm
 		finally
 		{
 			databaseContext?.Dispose();
+			databaseContext = null;
 		}
 	}
 
