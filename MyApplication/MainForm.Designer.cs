@@ -64,33 +64,33 @@
 			// updateProfileToolStripMenuItem
 			// 
 			updateProfileToolStripMenuItem.Name = "updateProfileToolStripMenuItem";
-			updateProfileToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+			updateProfileToolStripMenuItem.Size = new System.Drawing.Size(207, 26);
 			updateProfileToolStripMenuItem.Text = "&Update Profile";
 			updateProfileToolStripMenuItem.Click += UpdateProfileToolStripMenuItem_Click;
 			// 
 			// changePasswordToolStripMenuItem
 			// 
 			changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
-			changePasswordToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+			changePasswordToolStripMenuItem.Size = new System.Drawing.Size(207, 26);
 			changePasswordToolStripMenuItem.Text = "&Change Password";
 			changePasswordToolStripMenuItem.Click += ChangePasswordToolStripMenuItem_Click;
 			// 
 			// toolStripMenuItem1
 			// 
 			toolStripMenuItem1.Name = "toolStripMenuItem1";
-			toolStripMenuItem1.Size = new System.Drawing.Size(221, 6);
+			toolStripMenuItem1.Size = new System.Drawing.Size(204, 6);
 			// 
 			// logoutToolStripMenuItem
 			// 
 			logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
-			logoutToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+			logoutToolStripMenuItem.Size = new System.Drawing.Size(207, 26);
 			logoutToolStripMenuItem.Text = "&Logout";
 			logoutToolStripMenuItem.Click += LogoutToolStripMenuItem_Click;
 			// 
 			// exitToolStripMenuItem
 			// 
 			exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-			exitToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+			exitToolStripMenuItem.Size = new System.Drawing.Size(207, 26);
 			exitToolStripMenuItem.Text = "E&xit";
 			exitToolStripMenuItem.Click += ExitToolStripMenuItem_Click;
 			// 

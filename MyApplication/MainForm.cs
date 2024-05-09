@@ -1,6 +1,10 @@
-﻿namespace MyApplication;
+﻿using System;
+using Infrastructure;
+using System.Windows.Forms;
 
-public partial class MainForm : System.Windows.Forms.Form
+namespace MyApplication;
+
+public partial class MainForm : Form
 {
 	public MainForm() : base()
 	{
@@ -9,16 +13,16 @@ public partial class MainForm : System.Windows.Forms.Form
 
 	public bool IsClosing { get; set; }
 
-	private void MainForm_Load(object sender, System.EventArgs e)
+	private void MainForm_Load(object sender, EventArgs e)
 	{
 		ResetForm();
 	}
 
 	public void ResetForm()
 	{
-		if (Infrastructure.Utility.AuthenticatedUser is null)
+		if (Utility.AuthenticatedUser is null)
 		{
-			System.Windows.Forms.Application.Exit();
+			Application.Exit();
 			return;
 		}
 
@@ -43,7 +47,7 @@ public partial class MainForm : System.Windows.Forms.Form
 		if (string.IsNullOrWhiteSpace(value: userDisplayName))
 		{
 			userDisplayName =
-				Infrastructure.Utility.AuthenticatedUser.Username;
+				Utility.AuthenticatedUser.Username;
 		}
 
 		welcomeToolStripStatusLabel.Text = $"Welcome {userDisplayName}";
@@ -51,7 +55,7 @@ public partial class MainForm : System.Windows.Forms.Form
 
 	private ChangePasswordForm? MyChangePasswordForm { get; set; }
 
-	private void ChangePasswordToolStripMenuItem_Click(object sender, System.EventArgs e)
+	private void ChangePasswordToolStripMenuItem_Click(object sender, EventArgs e)
 	{
 		// روش احمقانه
 
@@ -74,7 +78,7 @@ public partial class MainForm : System.Windows.Forms.Form
 
 	private UpdateProfileForm? MyUpdateProfileForm { get; set; }
 
-	private void UpdateProfileToolStripMenuItem_Click(object sender, System.EventArgs e)
+	private void UpdateProfileToolStripMenuItem_Click(object sender, EventArgs e)
 	{
 		if (MyUpdateProfileForm is null || MyUpdateProfileForm.IsDisposed)
 		{
@@ -87,18 +91,18 @@ public partial class MainForm : System.Windows.Forms.Form
 		MyUpdateProfileForm.Show();
 	}
 
-	private void LogoutToolStripMenuItem_Click(object sender, System.EventArgs e)
+	private void LogoutToolStripMenuItem_Click(object sender, EventArgs e)
 	{
 		Hide();
 
-		Infrastructure.Utility.AuthenticatedUser = null;
-		Infrastructure.Utility.LoginForm.Show();
-		Infrastructure.Utility.LoginForm.ResetForm();
+		Utility.AuthenticatedUser = null;
+		Utility.LoginForm.Show();
+		Utility.LoginForm.ResetForm();
 	}
 
 	private Admin.UsersForm? MyUsersForm { get; set; }
 
-	private void UsersToolStripMenuItem_Click(object sender, System.EventArgs e)
+	private void UsersToolStripMenuItem_Click(object sender, EventArgs e)
 	{
 		if (MyUsersForm is null || MyUsersForm.IsDisposed)
 		{
@@ -111,15 +115,14 @@ public partial class MainForm : System.Windows.Forms.Form
 		MyUsersForm.Show();
 	}
 
-	private void ExitToolStripMenuItem_Click(object sender, System.EventArgs e)
+	private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
 	{
 		IsClosing = true;
 
-		Infrastructure.Utility.Exit();
+		Utility.Exit();
 	}
 
-	private void MainForm_FormClosing
-		(object sender, System.Windows.Forms.FormClosingEventArgs e)
+	private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
 	{
 		if (IsClosing == false)
 		{

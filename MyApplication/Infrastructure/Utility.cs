@@ -46,6 +46,9 @@ public static class Utility : object
 		text =
 			text.Trim();
 
+		//text =
+		//	text.TrimStart().TrimEnd();
+
 		if (text.Length == 0)
 		{
 			return string.Empty;

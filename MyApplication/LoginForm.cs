@@ -1,25 +1,26 @@
-﻿using System.Linq;
+﻿using System;
+using Persistence;
+using System.Linq;
+using Infrastructure;
+using System.Windows.Forms;
 
 namespace MyApplication;
 
-public partial class LoginForm : Infrastructure.BaseForm
+public partial class LoginForm : BaseForm
 {
 	public LoginForm() : base()
 	{
 		InitializeComponent();
 	}
 
-	private void LoginButton_Click
-		(object sender, System.EventArgs e)
+	private void LoginButton_Click(object sender, EventArgs e)
 	{
 		// **************************************************
 		usernameTextBox.Text =
-			Infrastructure.Utility
-			.FixText(text: usernameTextBox.Text);
+			Utility.FixText(text: usernameTextBox.Text);
 
 		passwordTextBox.Text =
-			Infrastructure.Utility
-			.FixText(text: passwordTextBox.Text);
+			Utility.FixText(text: passwordTextBox.Text);
 
 		if (usernameTextBox.Text == string.Empty
 			|| passwordTextBox.Text == string.Empty)
@@ -27,7 +28,7 @@ public partial class LoginForm : Infrastructure.BaseForm
 			var errorMessage =
 				"Username and Password are required!";
 
-			System.Windows.Forms.MessageBox.Show(text: errorMessage);
+			MessageBox.Show(text: errorMessage);
 
 			if (usernameTextBox.Text == string.Empty)
 			{
@@ -46,106 +47,51 @@ public partial class LoginForm : Infrastructure.BaseForm
 		// از این قسمت به بعد، باید سر کلاس نوشته شود
 		// **************************************************
 
-		// **************************************************
-		//Persistence.DatabaseContext? databaseContext = null;
-
-		//try
-		//{
-		//	databaseContext =
-		//		new Persistence.DatabaseContext();
-
-		//	// کار می‌کنیم databaseContext با
-		//}
-		//catch (System.Exception ex)
-		//{
-		//	// می‌کنیم Log خطا را
-
-		//	var errorMessage =
-		//		"خطای ناشناخته‌ای صورت گرفته است، لطفا با تیم پشتیبانی تماس حاصل فرمایید";
-
-		//	System.Windows.Forms.MessageBox.Show(text: errorMessage);
-		//}
-		//finally
-		//{
-		//	//if (databaseContext != null)
-		//	//{
-		//	//	databaseContext.Dispose();
-		//	//	databaseContext = null;
-		//	//}
-
-		//	//if (databaseContext is not null)
-		//	//{
-		//	//	databaseContext.Dispose();
-		//	//	databaseContext = null;
-		//	//}
-
-		//	//if (databaseContext is not null)
-		//	//{
-		//	//	databaseContext.Dispose();
-		//	//}
-
-		//	databaseContext?.Dispose();
-		//}
-		// **************************************************
-
-		Persistence.DatabaseContext? databaseContext = null;
-
 		try
 		{
-			databaseContext =
-				new Persistence.DatabaseContext();
-
-			//var foundedUser =
-			//	databaseContext.Users
-			//	// using System.Linq;
-			//	.Where(current => current.Username == usernameTextBox.Text)
-			//	// using System.Linq;
-			//	.FirstOrDefault();
-
-			// کار نمی‌کند EF Core در
-			//var foundedUser =
-			//	databaseContext.Users
-			//	.Where(current => string.Compare(current.Username, usernameTextBox.Text, true) == 0)
-			//	.FirstOrDefault();
+			using var databaseContext = new DatabaseContext();
 
 			var foundedUser =
 				databaseContext.Users
-				.Where(current => current.Username.ToLower() == usernameTextBox.Text.ToLower())
+				.Where(current =>
+					current.Username.ToLower() == usernameTextBox.Text.ToLower())
 				.FirstOrDefault();
 
 			if (foundedUser is null)
 			{
 				// پیغام ذیل کاملا دقیق بوده، ولی از نظر مسائل امنیتی صلاح نیست
 
-				//System.Windows.Forms.MessageBox
-				//	.Show(text: "Username is not correct!");
+				//MessageBox.Show(text: "Username is not correct!");
 
 				// دقت کنید که در این حالت، پیغام خطا باید گنگ باشد
 
 				var errorMessage =
 					"Username and/or Password is not correct!";
 
-				System.Windows.Forms.MessageBox.Show(text: errorMessage);
+				MessageBox.Show(text: errorMessage);
 
 				usernameTextBox.Focus();
 
 				return;
 			}
 
+			//if (foundedUser.Password != passwordTextBox.Text)
+			//{
+			//}
+
 			if (string.Compare(foundedUser.Password,
 				passwordTextBox.Text, ignoreCase: false) != 0)
 			{
 				// پیغام ذیل کاملا دقیق بوده، ولی از نظر مسائل امنیتی صلاح نیست
 
-				//System.Windows.Forms.MessageBox
-				//	.Show(text: "Password is not correct!");
+				//MessageBox.Show(text: "Password is not correct!");
 
 				// دقت کنید که در این حالت، پیغام خطا باید گنگ باشد
 
 				var errorMessage =
 					"Username and/or Password is not correct!";
 
-				System.Windows.Forms.MessageBox.Show(text: errorMessage);
+				MessageBox.Show(text: errorMessage);
 
 				usernameTextBox.Focus();
 
@@ -157,7 +103,7 @@ public partial class LoginForm : Infrastructure.BaseForm
 				var errorMessage =
 					"You can not login right now! Please contact support.";
 
-				System.Windows.Forms.MessageBox.Show(text: errorMessage);
+				MessageBox.Show(text: errorMessage);
 
 				usernameTextBox.Focus();
 
@@ -165,7 +111,7 @@ public partial class LoginForm : Infrastructure.BaseForm
 			}
 
 			// **************************************************
-			//System.Windows.Forms.MessageBox.Show(text: "Welcome!");
+			MessageBox.Show(text: "Welcome!");
 			// **************************************************
 
 			// **************************************************
@@ -180,7 +126,7 @@ public partial class LoginForm : Infrastructure.BaseForm
 			// **************************************************
 			// روش احمقانه
 			// **************************************************
-			Infrastructure.Utility.AuthenticatedUser = foundedUser;
+			Utility.AuthenticatedUser = foundedUser;
 
 			Hide();
 
@@ -191,29 +137,22 @@ public partial class LoginForm : Infrastructure.BaseForm
 			// **************************************************
 			// *** روش هوشمندانه ********************************
 			// **************************************************
-			//Infrastructure.Utility.AuthenticatedUser = foundedUser;
+			//Utility.AuthenticatedUser = foundedUser;
 
 			//Hide();
-			//Infrastructure.Utility.MainForm.ResetForm();
-			//Infrastructure.Utility.MainForm.Show();
+			//Utility.MainForm.ResetForm();
+			//Utility.MainForm.Show();
 			// **************************************************
 			// **************************************************
 			// **************************************************
 		}
-		catch (System.Exception ex)
+		catch (Exception ex)
 		{
-			System.Windows.Forms.MessageBox
-				.Show(text: $"Error: {ex.Message}");
-		}
-		finally
-		{
-			databaseContext?.Dispose();
-			databaseContext = null;
+			MessageBox.Show(text: $"Error: {ex.Message}");
 		}
 	}
 
-	private void ResetButton_Click
-		(object sender, System.EventArgs e)
+	private void ResetButton_Click(object sender, EventArgs e)
 	{
 		ResetForm();
 	}
@@ -226,8 +165,7 @@ public partial class LoginForm : Infrastructure.BaseForm
 		usernameTextBox.Focus();
 	}
 
-	private void RegisterButton_Click
-		(object sender, System.EventArgs e)
+	private void RegisterButton_Click(object sender, EventArgs e)
 	{
 		// **************************************************
 		// دستورات ذیل کار نمی‌کند
@@ -265,20 +203,19 @@ public partial class LoginForm : Infrastructure.BaseForm
 		// **************************************************
 		//Hide();
 
-		//Infrastructure.Utility.RegisterForm.Show();
+		//Utility.RegisterForm.Show();
 		// **************************************************
 
 		// **************************************************
 		Hide();
 
-		Infrastructure.Utility.RegisterForm.ResetForm();
-		Infrastructure.Utility.RegisterForm.Show();
+		Utility.RegisterForm.ResetForm();
+		Utility.RegisterForm.Show();
 		// **************************************************
 	}
 
-	private void ExitButton_Click
-		(object sender, System.EventArgs e)
+	private void ExitButton_Click(object sender, EventArgs e)
 	{
-		Infrastructure.Utility.Exit();
+		Utility.Exit();
 	}
 }
