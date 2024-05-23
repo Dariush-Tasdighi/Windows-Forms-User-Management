@@ -1,4 +1,6 @@
-﻿namespace Infrastructure;
+﻿using Domain;
+
+namespace Infrastructure;
 
 public static class Utility : object
 {
@@ -209,22 +211,22 @@ public static class Utility : object
 	// **************************************************
 
 	// **************************************************
-	//public static System.Guid? UserId;
+	//public static Guid? UserId;
 	// **************************************************
 
 	// **************************************************
+	//public static Guid? UserId;
 	//public static string? Username;
-	//public static System.Guid? UserId;
 	// **************************************************
 
 	// **************************************************
+	//public static Guid? UserId;
 	//public static string? Username;
 	//public static string? FullName;
-	//public static System.Guid? UserId;
 	// **************************************************
 
 	// **************************************************
-	public static Domain.User? AuthenticatedUser;
+	public static User? AuthenticatedUser;
 	// **************************************************
 
 	public static bool Exit()

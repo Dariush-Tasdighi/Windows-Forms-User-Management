@@ -1,3 +1,7 @@
+using System;
+using Infrastructure;
+using System.Windows.Forms;
+
 namespace MyApplication;
 
 internal static class Program
@@ -6,19 +10,19 @@ internal static class Program
 	{
 	}
 
-	[System.STAThread]
+	[STAThread]
 	private static void Main()
 	{
 		ApplicationConfiguration.Initialize();
 
 		// **************************************************
-		//System.Windows.Forms.Application.Run(mainForm: new LoginForm());
+		//Application.Run(mainForm: new LoginForm());
 		// **************************************************
 
 		// **************************************************
 		//var mainForm = new LoginForm();
 
-		//System.Windows.Forms.Application.Run(mainForm: mainForm);
+		//Application.Run(mainForm: mainForm);
 
 		//if (mainForm != null)
 		//{
@@ -32,10 +36,9 @@ internal static class Program
 		// **************************************************
 
 		// **************************************************
-		System.Windows.Forms.Application.Run
-			(mainForm: Infrastructure.Utility.LoginForm);
+		Application.Run(mainForm: Utility.LoginForm);
 
-		Infrastructure.Utility.DisposeLoginForm();
+		Utility.DisposeLoginForm();
 		// **************************************************
 	}
 }

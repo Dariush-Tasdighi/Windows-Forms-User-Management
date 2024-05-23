@@ -5,12 +5,12 @@
 		<OutputType>WinExe</OutputType>
 		<UseWindowsForms>true</UseWindowsForms>
 		<!--<ImplicitUsings>enable</ImplicitUsings>-->
-		<TargetFramework>net7.0-windows</TargetFramework>
+		<TargetFramework>net8.0-windows</TargetFramework>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Data\Persistence.csproj" />
 		<ProjectReference Include="..\Dtat\Dtat.csproj" />
+		<ProjectReference Include="..\Data\Persistence.csproj" />
 	</ItemGroup>
 
 </Project>

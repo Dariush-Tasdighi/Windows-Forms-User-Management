@@ -111,7 +111,7 @@ public partial class LoginForm : BaseForm
 			}
 
 			// **************************************************
-			MessageBox.Show(text: "Welcome!");
+			//MessageBox.Show(text: "Welcome!");
 			// **************************************************
 
 			// **************************************************
@@ -140,6 +140,7 @@ public partial class LoginForm : BaseForm
 			//Utility.AuthenticatedUser = foundedUser;
 
 			//Hide();
+
 			//Utility.MainForm.ResetForm();
 			//Utility.MainForm.Show();
 			// **************************************************

@@ -1,30 +1,32 @@
-﻿using System.Linq;
+﻿using Domain;
+using System;
+using System.Linq;
+using Persistence;
+using Infrastructure;
+using System.Windows.Forms;
 
 namespace MyApplication;
 
-public partial class RegisterForm : Infrastructure.BaseForm
+public partial class RegisterForm : BaseForm
 {
 	public RegisterForm() : base()
 	{
 		InitializeComponent();
 	}
 
-	private void RegisterButton_Click(object sender, System.EventArgs e)
+	private void RegisterButton_Click(object sender, EventArgs e)
 	{
 		// **************************************************
 		// **************************************************
 		// **************************************************
 		usernameTextBox.Text =
-			Infrastructure.Utility
-			.FixText(text: usernameTextBox.Text);
+			Utility.FixText(text: usernameTextBox.Text);
 
 		passwordTextBox.Text =
-			Infrastructure.Utility
-			.FixText(text: passwordTextBox.Text);
+			Utility.FixText(text: passwordTextBox.Text);
 
 		fullNameTextBox.Text =
-			Infrastructure.Utility
-			.FixText(text: fullNameTextBox.Text);
+			Utility.FixText(text: fullNameTextBox.Text);
 
 		if (usernameTextBox.Text == string.Empty
 			|| passwordTextBox.Text == string.Empty)
@@ -32,7 +34,7 @@ public partial class RegisterForm : Infrastructure.BaseForm
 			var errorMessage =
 				"Username and Password are requied!";
 
-			System.Windows.Forms.MessageBox.Show(text: errorMessage);
+			MessageBox.Show(text: errorMessage);
 
 			if (usernameTextBox.Text == string.Empty)
 			{
@@ -61,7 +63,7 @@ public partial class RegisterForm : Infrastructure.BaseForm
 			if (errorMessages != string.Empty)
 			{
 				errorMessages +=
-					System.Environment.NewLine; // "\r\n"
+					Environment.NewLine; // "\r\n"
 			}
 
 			errorMessages +=
@@ -71,8 +73,7 @@ public partial class RegisterForm : Infrastructure.BaseForm
 		// اگر خطایی وجود داشت
 		if (errorMessages != string.Empty)
 		{
-			System.Windows.Forms
-				.MessageBox.Show(text: errorMessages);
+			MessageBox.Show(text: errorMessages);
 
 			usernameTextBox.Focus();
 
@@ -86,12 +87,9 @@ public partial class RegisterForm : Infrastructure.BaseForm
 		// در ضمن، دقت کنید، چون دستورات فوق را سر کلاس نمی‌نویسید
 		// در زمان ورود اطلاعات، برای ثبت‌نام، داده‌های درستی را خودتان وارد کنید
 
-		Persistence.DatabaseContext? databaseContext = null;
-
 		try
 		{
-			databaseContext =
-				new Persistence.DatabaseContext();
+			using var databaseContext = new DatabaseContext();
 
 			var foundedUser =
 				databaseContext.Users
@@ -103,8 +101,7 @@ public partial class RegisterForm : Infrastructure.BaseForm
 				var errorMessage =
 					"This username is already exist! Please choose another one.";
 
-				System.Windows.Forms
-					.MessageBox.Show(text: errorMessage);
+				MessageBox.Show(text: errorMessage);
 
 				usernameTextBox.Focus();
 
@@ -112,8 +109,7 @@ public partial class RegisterForm : Infrastructure.BaseForm
 			}
 
 			var newUser =
-				new Domain.User
-				(username: usernameTextBox.Text, password: passwordTextBox.Text)
+				new User(username: usernameTextBox.Text, password: passwordTextBox.Text)
 				{
 					// دستور ذیل، بستگی به سناریو و قواعد و قوانین شرکت یا پروژه دارد
 					IsActive = true,
@@ -121,16 +117,11 @@ public partial class RegisterForm : Infrastructure.BaseForm
 					FullName = fullNameTextBox.Text,
 				};
 
-			// EF Core
 			databaseContext.Add(entity: newUser);
-
-			// EF / EF Core
-			//databaseContext.Users.Add(entity: newUser);
 
 			databaseContext.SaveChanges();
 
-			System.Windows.Forms.MessageBox
-				.Show(text: "Registration Done!");
+			MessageBox.Show(text: "Registration Done!");
 
 			// **************************************************
 			//fullNameTextBox.Text = string.Empty;
@@ -154,20 +145,13 @@ public partial class RegisterForm : Infrastructure.BaseForm
 			ResetForm();
 			// **************************************************
 		}
-		catch (System.Exception ex)
+		catch (Exception ex)
 		{
-			System.Windows.Forms.MessageBox
-				.Show(text: $"Error: {ex.Message}");
-		}
-		finally
-		{
-			databaseContext?.Dispose();
-			databaseContext = null;
+			MessageBox.Show(text: $"Error: {ex.Message}");
 		}
 	}
 
-	private void ResetButton_Click
-		(object sender, System.EventArgs e)
+	private void ResetButton_Click(object sender, EventArgs e)
 	{
 		//fullNameTextBox.Text = string.Empty;
 		//passwordTextBox.Text = string.Empty;
@@ -187,8 +171,7 @@ public partial class RegisterForm : Infrastructure.BaseForm
 		usernameTextBox.Focus();
 	}
 
-	private void LoginButton_Click
-		(object sender, System.EventArgs e)
+	private void LoginButton_Click(object sender, EventArgs e)
 	{
 		// **************************************************
 		// دستورات ذیل احمقانه می‌باشد
@@ -202,20 +185,19 @@ public partial class RegisterForm : Infrastructure.BaseForm
 		// **************************************************
 		//Hide();
 
-		//Infrastructure.Utility.LoginForm.Show();
+		//Utility.LoginForm.Show();
 		// **************************************************
 
 		// **************************************************
 		Hide();
 
-		Infrastructure.Utility.LoginForm.ResetForm();
-		Infrastructure.Utility.LoginForm.Show();
+		Utility.LoginForm.ResetForm();
+		Utility.LoginForm.Show();
 		// **************************************************
 	}
 
-	private void ExitButton_Click
-		(object sender, System.EventArgs e)
+	private void ExitButton_Click(object sender, EventArgs e)
 	{
-		Infrastructure.Utility.Exit();
+		Utility.Exit();
 	}
 }

@@ -1,14 +1,17 @@
-﻿namespace Persistence.Configurations;
+﻿using Domain;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-internal class UserConfiguration : object,
-	Microsoft.EntityFrameworkCore.IEntityTypeConfiguration<Domain.User>
+namespace Persistence.Configurations;
+
+internal class UserConfiguration :
+	object, IEntityTypeConfiguration<Domain.User>
 {
 	public UserConfiguration() : base()
 	{
 	}
 
-	public void Configure(Microsoft.EntityFrameworkCore
-		.Metadata.Builders.EntityTypeBuilder<Domain.User> builder)
+	public void Configure(EntityTypeBuilder<Domain.User> builder)
 	{
 		// **************************************************
 		// **************************************************
@@ -44,7 +47,7 @@ internal class UserConfiguration : object,
 		// *** Seed Data ************************************
 		// **************************************************
 		var user =
-			new Domain.User(username: "Dariush", password: "1234512345")
+			new User(username: "Dariush", password: "1234512345")
 			{
 				IsAdmin = true,
 				IsActive = true,

@@ -1,79 +1,31 @@
-﻿namespace Domain;
+﻿using Domain.Seedwork;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
-public class User : Seedwork.Entity
+namespace Domain;
+
+public class User(string username, string password) : Entity
 {
-	//public User() : base()
-	//{
-	//}
-
-	public User(string username, string password) : base()
-	{
-		Username = username;
-		Password = password;
-	}
-
-	// **********
-	[System.ComponentModel.DisplayName
-		(displayName: "Admin")]
+	[DisplayName(displayName: "Admin")]
 	public bool IsAdmin { get; set; }
-	// **********
 
-	// **********
-	[System.ComponentModel.DisplayName
-		(displayName: "Active")]
+	[DisplayName(displayName: "Active")]
 	public bool IsActive { get; set; }
-	// **********
 
-	// **********
-	//[System.ComponentModel.DataAnnotations.MaxLength
-	//	(length: 20)]
+	[Required(AllowEmptyStrings = false)]
+	[StringLength(maximumLength: 20, MinimumLength = 6)]
+	public string Username { get; set; } = username;
 
-	//[System.ComponentModel.DataAnnotations.MinLength
-	//	(length: 6)]
+	[Browsable(browsable: false)]
+	[Required(AllowEmptyStrings = false)]
+	[StringLength(maximumLength: 20, MinimumLength = 8)]
+	public string Password { get; set; } = password;
 
-	[System.ComponentModel.DataAnnotations.StringLength
-		(maximumLength: 20, MinimumLength = 6)]
-
-	//[System.ComponentModel.DataAnnotations.Required]
-
-	[System.ComponentModel.DataAnnotations.Required
-		(AllowEmptyStrings = false)]
-	public string Username { get; set; }
-	// **********
-
-	// **********
-	[System.ComponentModel.Browsable
-		(browsable: false)]
-
-	//[System.ComponentModel.DataAnnotations.MaxLength
-	//	(length: 40)]
-
-	//[System.ComponentModel.DataAnnotations.MinLength
-	//	(length: 8)]
-
-	[System.ComponentModel.DataAnnotations.StringLength
-		(maximumLength: 20, MinimumLength = 8)]
-
-	[System.ComponentModel.DataAnnotations.Required
-		(AllowEmptyStrings = false)]
-	public string Password { get; set; }
-	// **********
-
-	// **********
-	[System.ComponentModel.DisplayName
-		(displayName: "Full Name")]
-
-	[System.ComponentModel.DataAnnotations.Display
-		(Name = "Full Name")]
-
-	[System.ComponentModel.DataAnnotations.MaxLength
-		(length: 50)]
+	[MaxLength(length: 50)]
+	[Display(Name = "Full Name")]
+	[DisplayName(displayName: "Full Name")]
 	public string? FullName { get; set; }
-	// **********
 
-	// **********
-	[System.ComponentModel.Browsable
-		(browsable: false)]
+	[Browsable(browsable: false)]
 	public string? Description { get; set; }
-	// **********
 }

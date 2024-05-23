@@ -124,10 +124,10 @@ public partial class MainForm : Form
 
 	private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
 	{
-		if (IsClosing == false)
-		{
-			// بی خیال شو - شتر دیدی ندیدی
-			e.Cancel = true;
-		}
+		//if (IsClosing == false)
+		//{
+		//	// بی خیال شو - شتر دیدی ندیدی
+		//	e.Cancel = true;
+		//}
 	}
 }

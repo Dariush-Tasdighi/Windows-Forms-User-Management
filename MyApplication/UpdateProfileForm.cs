@@ -1,62 +1,63 @@
-﻿using System.Linq;
+﻿using System;
+using Persistence;
+using System.Linq;
+using Infrastructure;
+using System.Windows.Forms;
 
 namespace MyApplication;
 
-public partial class UpdateProfileForm : Infrastructure.BaseForm
+public partial class UpdateProfileForm : BaseForm
 {
 	public UpdateProfileForm() : base()
 	{
 		InitializeComponent();
 	}
 
-	private void UpdateProfileForm_Load(object sender, System.EventArgs e)
+	private void UpdateProfileForm_Load(object sender, EventArgs e)
 	{
 		ResetForm();
 	}
 
-	private void ResetButton_Click(object sender, System.EventArgs e)
+	private void ResetButton_Click(object sender, EventArgs e)
 	{
 		ResetForm();
 	}
 
 	private void ResetForm()
 	{
-		if (Infrastructure.Utility.AuthenticatedUser is null)
+		if (Utility.AuthenticatedUser is null)
 		{
-			System.Windows.Forms.Application.Exit();
+			Application.Exit();
 			return;
 		}
 
 		// **************************************************
 		//fullNameTextBox.Text =
-		//	Infrastructure.Utility.AuthenticatedUser.FullName;
+		//	Utility.AuthenticatedUser.FullName;
 
 		//descriptionTextBox.Text =
-		//	Infrastructure.Utility.AuthenticatedUser.Description;
+		//	Utility.AuthenticatedUser.Description;
 		// **************************************************
-
-		Persistence.DatabaseContext? databaseContext = null;
 
 		try
 		{
-			databaseContext =
-				new Persistence.DatabaseContext();
+			using var databaseContext = new DatabaseContext();
 
 			var currentUser =
 				databaseContext.Users
-				.Where(current => current.Id == Infrastructure.Utility.AuthenticatedUser.Id)
+				.Where(current => current.Id == Utility.AuthenticatedUser.Id)
 				.FirstOrDefault();
 
 			// **************************************************
 			if (currentUser is null)
 			{
-				System.Windows.Forms.Application.Exit();
+				Application.Exit();
 				return;
 			}
 
 			if (currentUser.IsActive == false)
 			{
-				System.Windows.Forms.Application.Exit();
+				Application.Exit();
 				return;
 			}
 			// **************************************************
@@ -67,61 +68,49 @@ public partial class UpdateProfileForm : Infrastructure.BaseForm
 			descriptionTextBox.Text =
 				currentUser.Description;
 		}
-		catch (System.Exception ex)
+		catch (Exception ex)
 		{
-			System.Windows.Forms.MessageBox
-				.Show(text: $"Error: {ex.Message}");
-		}
-		finally
-		{
-			databaseContext?.Dispose();
-			databaseContext = null;
+			MessageBox.Show(text: $"Error: {ex.Message}");
 		}
 	}
 
-	private void SaveButton_Click
-		(object sender, System.EventArgs e)
+	private void SaveButton_Click(object sender, EventArgs e)
 	{
-		if (Infrastructure.Utility.AuthenticatedUser is null)
+		if (Utility.AuthenticatedUser is null)
 		{
-			System.Windows.Forms.Application.Exit();
+			Application.Exit();
 			return;
 		}
 
-		Persistence.DatabaseContext? databaseContext = null;
-
 		try
 		{
-			databaseContext =
-				new Persistence.DatabaseContext();
+			using var databaseContext = new DatabaseContext();
 
 			var currentUser =
 				databaseContext.Users
-				.Where(current => current.Id == Infrastructure.Utility.AuthenticatedUser.Id)
+				.Where(current => current.Id == Utility.AuthenticatedUser.Id)
 				.FirstOrDefault();
 
 			// **************************************************
 			if (currentUser is null)
 			{
-				System.Windows.Forms.Application.Exit();
+				Application.Exit();
 				return;
 			}
 
 			if (currentUser.IsActive == false)
 			{
-				System.Windows.Forms.Application.Exit();
+				Application.Exit();
 				return;
 			}
 			// **************************************************
 
 			// **************************************************
 			fullNameTextBox.Text =
-				Infrastructure.Utility.FixText
-				(text: fullNameTextBox.Text);
+				Utility.FixText(text: fullNameTextBox.Text);
 
 			descriptionTextBox.Text =
-				Infrastructure.Utility.FixText
-				(text: descriptionTextBox.Text);
+				Utility.FixText(text: descriptionTextBox.Text);
 			// **************************************************
 
 			// **************************************************
@@ -134,27 +123,21 @@ public partial class UpdateProfileForm : Infrastructure.BaseForm
 			databaseContext.SaveChanges();
 			// **************************************************
 
-			System.Windows.Forms.MessageBox
-				.Show(text: "Your profile updated successfully...");
+			MessageBox.Show
+				(text: "Your profile updated successfully...");
 
 			// **************************************************
-			Infrastructure.Utility.AuthenticatedUser = currentUser;
+			Utility.AuthenticatedUser = currentUser;
 
-			Infrastructure.Utility.MainForm.ResetForm();
+			Utility.MainForm.ResetForm();
 			// **************************************************
 
-			// استفاده کنیم Close فرم به طور اتوماتیک بسته شود، می‌توانیم از دستور MessageBox اگر بخواهیم بعد از UpdateProfileForm در داخل
+			// استفاده کنیم Close فرم به طور اتوماتیک بسته شود، می‌توانیم از دستور MessageBox اگر بخواهیم بعد از نمایش UpdateProfileForm در داخل
 			//Close();
 		}
-		catch (System.Exception ex)
+		catch (Exception ex)
 		{
-			System.Windows.Forms.MessageBox
-				.Show(text: $"Error: {ex.Message}");
-		}
-		finally
-		{
-			databaseContext?.Dispose();
-			databaseContext = null;
+			MessageBox.Show(text: $"Error: {ex.Message}");
 		}
 	}
 }

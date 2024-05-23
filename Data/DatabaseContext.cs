@@ -2,17 +2,17 @@
 
 namespace Persistence;
 
-public class DatabaseContext : Microsoft.EntityFrameworkCore.DbContext
+public class DatabaseContext : DbContext
 {
 	public DatabaseContext() : base()
 	{
 		Database.EnsureCreated();
 	}
 
-	public Microsoft.EntityFrameworkCore.DbSet<Domain.User> Users { get; set; }
+	public DbSet<Domain.User> Users { get; set; }
 
 	protected override void OnConfiguring
-		(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder optionsBuilder)
+		(DbContextOptionsBuilder optionsBuilder)
 	{
 		var connectionString =
 			"Server=.;User ID=sa;Password=1234512345;Database=USER_MANAGEMENT;MultipleActiveResultSets=true;TrustServerCertificate=True;";
