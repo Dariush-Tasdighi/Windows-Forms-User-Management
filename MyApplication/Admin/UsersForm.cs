@@ -1,47 +1,67 @@
-﻿using System.Linq;
+﻿using Domain;
+using System;
+using Persistence;
+using System.Linq;
+using Infrastructure;
+using System.Windows.Forms;
+using System.Collections.Generic;
 
 namespace MyApplication.Admin;
 
-public partial class UsersForm : Infrastructure.BaseForm
+public partial class UsersForm : BaseForm
 {
 	public UsersForm() : base()
 	{
 		InitializeComponent();
 	}
 
-	private void UsersForm_Load
-		(object sender, System.EventArgs e)
+	private void UsersForm_Load(object sender, EventArgs e)
 	{
+		// **************************************************
 		usersDataGridView.SelectionMode =
-			System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+			DataGridViewSelectionMode.FullRowSelect;
 
 		usersDataGridView.EditMode =
-			System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+			DataGridViewEditMode.EditProgrammatically;
+		// **************************************************
+
+		// **************************************************
+		//try
+		//{
+		//	using var databaseContext = new DatabaseContext();
+
+		//	var users =
+		//		databaseContext.Users
+		//		.ToList()
+		//		;
+
+		//	usersDataGridView.DataSource = users;
+		//}
+		//catch (Exception ex)
+		//{
+		//	MessageBox.Show(text: ex.Message);
+		//}
+		// **************************************************
 	}
 
-	private void SearchButton_Click
-		(object sender, System.EventArgs e)
+	private void SearchButton_Click(object sender, EventArgs e)
 	{
 		Search();
 	}
 
 	private void Search()
 	{
-		Persistence.DatabaseContext? databaseContext = null;
-
 		try
 		{
-			databaseContext =
-				new Persistence.DatabaseContext();
+			using var databaseContext = new DatabaseContext();
 
 			fullNameTextBox.Text =
-				Infrastructure.Utility
-				.FixText(text: fullNameTextBox.Text);
+				Utility.FixText(text: fullNameTextBox.Text);
 
 			//var users; // Compile Error!
 			//var users = null; // Compile Error!
 
-			System.Collections.Generic.List<Domain.User> users;
+			List<User> users;
 
 			if (fullNameTextBox.Text == string.Empty)
 			{
@@ -98,34 +118,27 @@ public partial class UsersForm : Infrastructure.BaseForm
 			fullNameTextBox.SelectAll();
 			fullNameTextBox.Focus();
 		}
-		catch (System.Exception ex)
+		catch (Exception ex)
 		{
-			System.Windows.Forms.MessageBox.Show(text: ex.Message);
+			MessageBox.Show(text: ex.Message);
 
 			fullNameTextBox.Focus();
 		}
-		finally
-		{
-			databaseContext?.Dispose();
-			databaseContext = null;
-		}
 	}
 
-	private void UsersDataGridView_CellDoubleClick
-		(object sender, System.Windows.Forms.DataGridViewCellEventArgs e)
+	private void UsersDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
 	{
 		// روش احمقانه
 		//var selectedUser =
-		//	(Domain.User)usersDataGridView.Rows[e.RowIndex].DataBoundItem;
+		//	(User)usersDataGridView.Rows[e.RowIndex].DataBoundItem;
 
 		// روش هوشمندانه
 		var selectedUser =
-			usersDataGridView.Rows[e.RowIndex].DataBoundItem as
-			Domain.User;
+			usersDataGridView.Rows[e.RowIndex].DataBoundItem as User;
 
 		if (selectedUser is not null)
 		{
-			//System.Windows.Forms.MessageBox.Show(selectedUser.Username);
+			//MessageBox.Show(selectedUser.Username);
 
 			var updateUserForm =
 				new UpdateUserForm()

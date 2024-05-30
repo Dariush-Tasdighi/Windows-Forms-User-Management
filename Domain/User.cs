@@ -22,7 +22,7 @@ public class User(string username, string password) : Entity
 	public string Password { get; set; } = password;
 
 	[MaxLength(length: 50)]
-	[Display(Name = "Full Name")]
+	//[Display(Name = "Full Name")]
 	[DisplayName(displayName: "Full Name")]
 	public string? FullName { get; set; }
 

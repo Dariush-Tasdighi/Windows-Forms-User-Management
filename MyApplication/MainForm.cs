@@ -26,7 +26,7 @@ public partial class MainForm : Form
 			return;
 		}
 
-		//if (Infrastructure.Utility.AuthenticatedUser.IsAdmin)
+		//if (Utility.AuthenticatedUser.IsAdmin)
 		//{
 		//	adminToolStripMenuItem.Visible = true;
 		//}
@@ -36,13 +36,13 @@ public partial class MainForm : Form
 		//}
 
 		adminToolStripMenuItem.Visible =
-			Infrastructure.Utility.AuthenticatedUser.IsAdmin;
+			Utility.AuthenticatedUser.IsAdmin;
 
 		//welcomeToolStripStatusLabel.Text =
-		//	$"Welcome {Infrastructure.Utility.AuthenticatedUser.Username}";
+		//	$"Welcome {Utility.AuthenticatedUser.Username}";
 
 		string? userDisplayName =
-			Infrastructure.Utility.AuthenticatedUser.FullName;
+			Utility.AuthenticatedUser.FullName;
 
 		if (string.IsNullOrWhiteSpace(value: userDisplayName))
 		{

@@ -1,37 +1,40 @@
-﻿using System.Linq;
+﻿using Domain;
+using System;
+using Persistence;
+using System.Linq;
+using Infrastructure;
+using System.Windows.Forms;
 
 namespace MyApplication.Admin;
 
-public partial class UpdateUserForm : Infrastructure.BaseForm
+public partial class UpdateUserForm : BaseForm
 {
 	public UpdateUserForm() : base()
 	{
 		InitializeComponent();
 	}
 
-	public Domain.User? SelectedUser { get; set; }
+	public User? SelectedUser { get; set; }
 
-	private void UpdateUserForm_Load
-		(object sender, System.EventArgs e)
+	private void UpdateUserForm_Load(object sender, EventArgs e)
 	{
 		ResetForm();
 	}
 
-	private void ResetButton_Click
-		(object sender, System.EventArgs e)
+	private void ResetButton_Click(object sender, EventArgs e)
 	{
 		ResetForm();
 	}
 
 	private void ResetForm()
 	{
-		if (Infrastructure.Utility.AuthenticatedUser is null)
+		if (Utility.AuthenticatedUser is null)
 		{
-			System.Windows.Forms.Application.Exit();
+			Application.Exit();
 			return;
 		}
 
-		if (Infrastructure.Utility.AuthenticatedUser.IsAdmin == false)
+		if (Utility.AuthenticatedUser.IsAdmin == false)
 		{
 			Close();
 			return;
@@ -43,19 +46,16 @@ public partial class UpdateUserForm : Infrastructure.BaseForm
 			return;
 		}
 
-		if (Infrastructure.Utility.AuthenticatedUser.Id == SelectedUser.Id)
+		if (Utility.AuthenticatedUser.Id == SelectedUser.Id)
 		{
 			deleteButton.Enabled = false;
 			isAdminCheckBox.Enabled = false;
 			isActiveCheckBox.Enabled = false;
 		}
 
-		Persistence.DatabaseContext? databaseContext = null;
-
 		try
 		{
-			databaseContext =
-				new Persistence.DatabaseContext();
+			using var databaseContext = new DatabaseContext();
 
 			var currentUser =
 				databaseContext.Users
@@ -77,24 +77,17 @@ public partial class UpdateUserForm : Infrastructure.BaseForm
 			isAdminCheckBox.Checked = currentUser.IsAdmin;
 			isActiveCheckBox.Checked = currentUser.IsActive;
 		}
-		catch (System.Exception ex)
+		catch (Exception ex)
 		{
-			System.Windows.Forms.MessageBox
-				.Show(text: $"Error: {ex.Message}");
-		}
-		finally
-		{
-			databaseContext?.Dispose();
-			databaseContext = null;
+			MessageBox.Show(text: $"Error: {ex.Message}");
 		}
 	}
 
-	private void UpdateButton_Click
-		(object sender, System.EventArgs e)
+	private void UpdateButton_Click(object sender, EventArgs e)
 	{
-		if (Infrastructure.Utility.AuthenticatedUser is null)
+		if (Utility.AuthenticatedUser is null)
 		{
-			System.Windows.Forms.Application.Exit();
+			Application.Exit();
 			return;
 		}
 
@@ -104,12 +97,9 @@ public partial class UpdateUserForm : Infrastructure.BaseForm
 			return;
 		}
 
-		Persistence.DatabaseContext? databaseContext = null;
-
 		try
 		{
-			databaseContext =
-				new Persistence.DatabaseContext();
+			using var databaseContext = new DatabaseContext();
 
 			var currentUser =
 				databaseContext.Users
@@ -134,41 +124,34 @@ public partial class UpdateUserForm : Infrastructure.BaseForm
 			databaseContext.SaveChanges();
 
 			// **************************************************
-			//Infrastructure.Utility.AuthenticatedUser = currentUser;
+			//Utility.AuthenticatedUser = currentUser;
 
-			//Infrastructure.Utility.MainForm.ResetForm();
+			//Utility.MainForm.ResetForm();
 			// **************************************************
 
-			System.Windows.Forms.MessageBox
-				.Show(text: "User profile updated successfully...");
+			MessageBox.Show
+				(text: "User profile updated successfully...");
 
 			// استفاده کنیم Close فرم به طور اتوماتیک بسته شود، می‌توانیم از دستور MessageBox اگر بخواهیم بعد از UpdateProfileForm در داخل
 			//Close();
 
-			if (Infrastructure.Utility.AuthenticatedUser.Id == SelectedUser.Id)
+			if (Utility.AuthenticatedUser.Id == SelectedUser.Id)
 			{
-				Infrastructure.Utility.AuthenticatedUser = currentUser;
-				Infrastructure.Utility.MainForm.ResetForm();
+				Utility.AuthenticatedUser = currentUser;
+				Utility.MainForm.ResetForm();
 			}
 		}
-		catch (System.Exception ex)
+		catch (Exception ex)
 		{
-			System.Windows.Forms.MessageBox
-				.Show(text: $"Error: {ex.Message}");
-		}
-		finally
-		{
-			databaseContext?.Dispose();
-			databaseContext = null;
+			MessageBox.Show(text: $"Error: {ex.Message}");
 		}
 	}
 
-	private void DeleteButton_Click
-		(object sender, System.EventArgs e)
+	private void DeleteButton_Click(object sender, EventArgs e)
 	{
-		if (Infrastructure.Utility.AuthenticatedUser is null)
+		if (Utility.AuthenticatedUser is null)
 		{
-			System.Windows.Forms.Application.Exit();
+			Application.Exit();
 			return;
 		}
 
@@ -178,12 +161,9 @@ public partial class UpdateUserForm : Infrastructure.BaseForm
 			return;
 		}
 
-		Persistence.DatabaseContext? databaseContext = null;
-
 		try
 		{
-			databaseContext =
-				new Persistence.DatabaseContext();
+			using var databaseContext = new DatabaseContext();
 
 			var currentUser =
 				databaseContext.Users
@@ -204,20 +184,14 @@ public partial class UpdateUserForm : Infrastructure.BaseForm
 
 			databaseContext.SaveChanges();
 
-			System.Windows.Forms.MessageBox
-				.Show(text: "The User profile deleted successfully...");
+			MessageBox.Show
+				(text: "The User profile deleted successfully...");
 
 			Close();
 		}
-		catch (System.Exception ex)
+		catch (Exception ex)
 		{
-			System.Windows.Forms.MessageBox
-				.Show(text: $"Error: {ex.Message}");
-		}
-		finally
-		{
-			databaseContext?.Dispose();
-			databaseContext = null;
+			MessageBox.Show(text: $"Error: {ex.Message}");
 		}
 	}
 }
