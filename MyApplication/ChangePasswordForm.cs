@@ -1,20 +1,23 @@
-﻿using System.Linq;
+﻿using System;
+using Persistence;
+using System.Linq;
+using Infrastructure;
+using System.Windows.Forms;
 
 namespace MyApplication
 {
-	public partial class ChangePasswordForm : Infrastructure.BaseForm
+	public partial class ChangePasswordForm : BaseForm
 	{
 		public ChangePasswordForm() : base()
 		{
 			InitializeComponent();
 		}
 
-		private void ChangePasswordForm_Load
-			(object sender, System.EventArgs e)
+		private void ChangePasswordForm_Load(object sender, EventArgs e)
 		{
-			if (Infrastructure.Utility.AuthenticatedUser is null)
+			if (Utility.AuthenticatedUser is null)
 			{
-				System.Windows.Forms.Application.Exit();
+				Application.Exit();
 			}
 		}
 
@@ -24,16 +27,13 @@ namespace MyApplication
 			// **************************************************
 			// **************************************************
 			oldPasswordTextBox.Text =
-				Infrastructure.Utility.FixText
-				(text: oldPasswordTextBox.Text);
+				Utility.FixText(text: oldPasswordTextBox.Text);
 
 			newPasswordTextBox.Text =
-				Infrastructure.Utility.FixText
-				(text: newPasswordTextBox.Text);
+				Utility.FixText(text: newPasswordTextBox.Text);
 
 			confirmNewPasswordTextBox.Text =
-				Infrastructure.Utility.FixText
-				(text: confirmNewPasswordTextBox.Text);
+				Utility.FixText(text: confirmNewPasswordTextBox.Text);
 			// **************************************************
 
 			// **************************************************
@@ -59,7 +59,7 @@ namespace MyApplication
 				if (errorMessages != string.Empty)
 				{
 					errorMessages +=
-						System.Environment.NewLine;
+						Environment.NewLine;
 				}
 
 				errorMessages +=
@@ -72,7 +72,7 @@ namespace MyApplication
 					if (errorMessages != string.Empty)
 					{
 						errorMessages +=
-							System.Environment.NewLine;
+							Environment.NewLine;
 					}
 
 					errorMessages +=
@@ -85,7 +85,7 @@ namespace MyApplication
 				if (errorMessages != string.Empty)
 				{
 					errorMessages +=
-						System.Environment.NewLine;
+						Environment.NewLine;
 				}
 
 				errorMessages +=
@@ -100,7 +100,7 @@ namespace MyApplication
 					if (errorMessages != string.Empty)
 					{
 						errorMessages +=
-							System.Environment.NewLine;
+							Environment.NewLine;
 					}
 
 					errorMessages +=
@@ -110,8 +110,7 @@ namespace MyApplication
 
 			if (errorMessages != string.Empty)
 			{
-				System.Windows.Forms
-					.MessageBox.Show(text: errorMessages);
+				MessageBox.Show(text: errorMessages);
 
 				oldPasswordTextBox.Focus();
 
@@ -121,36 +120,39 @@ namespace MyApplication
 			// **************************************************
 			// **************************************************
 
-			if (Infrastructure.Utility.AuthenticatedUser is null)
+			// **************************************************
+			// از این قسمت به بعد باید سر کلاس نوشته شود
+			// در ضمن، دقت کنید، چون دستورات فوق را سر کلاس نمی‌نویسید
+			// در زمان ورود اطلاعات، برای تغییر گذرواژه، داده‌های درستی را خودتان وارد کنید
+			// **************************************************
+
+			if (Utility.AuthenticatedUser is null)
 			{
-				System.Windows.Forms.Application.Exit();
+				Application.Exit();
 				return;
 			}
 
 			// از این قسمت به بعد باید سر کلاس نوشته شود
 
-			Persistence.DatabaseContext? databaseContext = null;
-
 			try
 			{
-				databaseContext =
-					new Persistence.DatabaseContext();
+				using var databaseContext = new DatabaseContext();
 
 				var currentUser =
 					databaseContext.Users
-					.Where(current => current.Id == Infrastructure.Utility.AuthenticatedUser.Id)
+					.Where(current => current.Id == Utility.AuthenticatedUser.Id)
 					.FirstOrDefault();
 
 				// **************************************************
 				if (currentUser is null)
 				{
-					System.Windows.Forms.Application.Exit();
+					Application.Exit();
 					return;
 				}
 
 				if (currentUser.IsActive == false)
 				{
-					System.Windows.Forms.Application.Exit();
+					Application.Exit();
 					return;
 				}
 				// **************************************************
@@ -159,8 +161,8 @@ namespace MyApplication
 				if (string.Compare(currentUser.Password,
 					oldPasswordTextBox.Text, ignoreCase: false) != 0)
 				{
-					System.Windows.Forms.MessageBox
-						.Show(text: "The old password is not correct!");
+					MessageBox.Show
+						(text: "The old password is not correct!");
 
 					oldPasswordTextBox.Focus();
 
@@ -174,27 +176,21 @@ namespace MyApplication
 				databaseContext.SaveChanges();
 				// **************************************************
 
-				System.Windows.Forms.MessageBox
-					.Show(text: "Your password changed successfully.");
+				MessageBox.Show
+					(text: "Your password changed successfully.");
 
 				ResetForm();
 
 				//Close();
 			}
-			catch (System.Exception ex)
+			catch (Exception ex)
 			{
-				System.Windows.Forms.MessageBox
-					.Show(text: $"Error: {ex.Message}");
-			}
-			finally
-			{
-				databaseContext?.Dispose();
-				databaseContext = null;
+				MessageBox.Show
+					(text: $"Error: {ex.Message}");
 			}
 		}
 
-		private void ResetButton_Click
-			(object sender, System.EventArgs e)
+		private void ResetButton_Click(object sender, EventArgs e)
 		{
 			ResetForm();
 		}
