@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Domain;
+using Microsoft.EntityFrameworkCore;
 
 namespace Persistence;
 
@@ -9,7 +10,7 @@ public class DatabaseContext : DbContext
 		Database.EnsureCreated();
 	}
 
-	public DbSet<Domain.User> Users { get; set; }
+	public DbSet<User> Users { get; set; }
 
 	protected override void OnConfiguring
 		(DbContextOptionsBuilder optionsBuilder)

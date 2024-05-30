@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 namespace Persistence.Configurations;
 
 internal class UserConfiguration :
-	object, IEntityTypeConfiguration<Domain.User>
+	object, IEntityTypeConfiguration<User>
 {
 	public UserConfiguration() : base()
 	{
 	}
 
-	public void Configure(EntityTypeBuilder<Domain.User> builder)
+	public void Configure(EntityTypeBuilder<User> builder)
 	{
 		// **************************************************
 		// **************************************************

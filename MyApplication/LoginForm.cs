@@ -21,7 +21,9 @@ public partial class LoginForm : BaseForm
 
 		passwordTextBox.Text =
 			Utility.FixText(text: passwordTextBox.Text);
+		// **************************************************
 
+		// **************************************************
 		if (usernameTextBox.Text == string.Empty
 			|| passwordTextBox.Text == string.Empty)
 		{
