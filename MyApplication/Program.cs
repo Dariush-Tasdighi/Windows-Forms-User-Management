@@ -6,10 +6,6 @@ namespace MyApplication;
 
 internal static class Program
 {
-	static Program()
-	{
-	}
-
 	[STAThread]
 	private static void Main()
 	{

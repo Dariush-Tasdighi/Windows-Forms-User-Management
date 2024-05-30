@@ -27,7 +27,9 @@ public partial class RegisterForm : BaseForm
 
 		fullNameTextBox.Text =
 			Utility.FixText(text: fullNameTextBox.Text);
+		// **************************************************
 
+		// **************************************************
 		if (usernameTextBox.Text == string.Empty
 			|| passwordTextBox.Text == string.Empty)
 		{

@@ -1,5 +1,6 @@
 ﻿using System;
 using Infrastructure;
+using MyApplication.Admin;
 using System.Windows.Forms;
 
 namespace MyApplication;
@@ -100,13 +101,13 @@ public partial class MainForm : Form
 		Utility.LoginForm.ResetForm();
 	}
 
-	private Admin.UsersForm? MyUsersForm { get; set; }
+	private UsersForm? MyUsersForm { get; set; }
 
 	private void UsersToolStripMenuItem_Click(object sender, EventArgs e)
 	{
 		if (MyUsersForm is null || MyUsersForm.IsDisposed)
 		{
-			MyUsersForm = new Admin.UsersForm
+			MyUsersForm = new UsersForm
 			{
 				MdiParent = this,
 			};

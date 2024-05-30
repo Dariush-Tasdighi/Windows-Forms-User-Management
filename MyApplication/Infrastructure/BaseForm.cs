@@ -1,6 +1,8 @@
-﻿namespace Infrastructure;
+﻿using System.Windows.Forms;
 
-public partial class BaseForm : System.Windows.Forms.Form
+namespace Infrastructure;
+
+public partial class BaseForm : Form
 {
 	public BaseForm() : base()
 	{
