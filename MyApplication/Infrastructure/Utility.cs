@@ -1,4 +1,6 @@
 ﻿using Domain;
+using MyApplication;
+using System.Windows.Forms;
 
 namespace Infrastructure;
 
@@ -7,9 +9,9 @@ public static class Utility : object
 	static Utility()
 	{
 		// Solution (3)
-		//MainForm = new MyApplication.MainForm();
-		//LoginForm = new MyApplication.LoginForm();
-		//RegisterForm = new MyApplication.RegisterForm();
+		//MainForm = new();
+		//LoginForm = new();
+		//RegisterForm = new();
 		// /Solution (3)
 	}
 
@@ -69,9 +71,9 @@ public static class Utility : object
 	// **************************************************
 	// Solution (1)
 	// **************************************************
-	//public static MyApplication.MainForm MainForm;
-	//public static MyApplication.LoginForm LoginForm;
-	//public static MyApplication.RegisterForm RegisterForm;
+	//public static MainForm MainForm;
+	//public static LoginForm LoginForm;
+	//public static RegisterForm RegisterForm;
 	// **************************************************
 	// /Solution (1)
 	// **************************************************
@@ -79,9 +81,9 @@ public static class Utility : object
 	// **************************************************
 	// Solution (2)
 	// **************************************************
-	//public static MyApplication.MainForm MainForm = new MyApplication.MainForm();
-	//public static MyApplication.LoginForm LoginForm = new MyApplication.LoginForm();
-	//public static MyApplication.RegisterForm RegisterForm = new MyApplication.RegisterForm();
+	//public static MainForm MainForm = new();
+	//public static LoginForm LoginForm = new();
+	//public static RegisterForm RegisterForm = new();
 	// **************************************************
 	// /Solution (2)
 	// **************************************************
@@ -89,9 +91,9 @@ public static class Utility : object
 	// **************************************************
 	// Solution (3)
 	// **************************************************
-	//public static MyApplication.MainForm MainForm;
-	//public static MyApplication.LoginForm LoginForm;
-	//public static MyApplication.RegisterForm RegisterForm;
+	//public static MainForm MainForm;
+	//public static LoginForm LoginForm;
+	//public static RegisterForm RegisterForm;
 	// **************************************************
 	// /Solution (3)
 	// **************************************************
@@ -99,19 +101,19 @@ public static class Utility : object
 	// **************************************************
 	// Solution (4)
 	// **************************************************
-	private static MyApplication.LoginForm? _loginForm;
+	private static LoginForm? _loginForm;
 
 	/// <summary>
 	/// Lazy Loading = Lazy Initialization
 	/// </summary>
-	public static MyApplication.LoginForm LoginForm
+	public static LoginForm LoginForm
 	{
 		get
 		{
 			if (_loginForm is null || _loginForm.IsDisposed)
 			{
 				_loginForm =
-					new MyApplication.LoginForm();
+					new LoginForm();
 			}
 
 			return _loginForm;
@@ -137,19 +139,19 @@ public static class Utility : object
 	// **************************************************
 	// **************************************************
 	// **************************************************
-	private static MyApplication.RegisterForm? _registerForm;
+	private static RegisterForm? _registerForm;
 
 	/// <summary>
 	/// Lazy Loading = Lazy Initialization
 	/// </summary>
-	public static MyApplication.RegisterForm RegisterForm
+	public static RegisterForm RegisterForm
 	{
 		get
 		{
 			if (_registerForm is null || _registerForm.IsDisposed)
 			{
 				_registerForm =
-					new MyApplication.RegisterForm();
+					new RegisterForm();
 			}
 
 			return _registerForm;
@@ -175,19 +177,19 @@ public static class Utility : object
 	// **************************************************
 	// **************************************************
 	// **************************************************
-	private static MyApplication.MainForm? _mainForm;
+	private static MainForm? _mainForm;
 
 	/// <summary>
 	/// Lazy Loading = Lazy Initialization
 	/// </summary>
-	public static MyApplication.MainForm MainForm
+	public static MainForm MainForm
 	{
 		get
 		{
 			if (_mainForm is null || _mainForm.IsDisposed)
 			{
 				_mainForm =
-					new MyApplication.MainForm();
+					new MainForm();
 			}
 
 			return _mainForm;
@@ -232,16 +234,16 @@ public static class Utility : object
 	public static bool Exit()
 	{
 		var result =
-			System.Windows.Forms.MessageBox.Show
+			MessageBox.Show
 			(text: "Are you sure?",
 			caption: "Question",
-			buttons: System.Windows.Forms.MessageBoxButtons.YesNo,
-			icon: System.Windows.Forms.MessageBoxIcon.Question,
-			defaultButton: System.Windows.Forms.MessageBoxDefaultButton.Button2);
+			buttons: MessageBoxButtons.YesNo,
+			icon: MessageBoxIcon.Question,
+			defaultButton: MessageBoxDefaultButton.Button2);
 
-		if (result == System.Windows.Forms.DialogResult.Yes)
+		if (result == DialogResult.Yes)
 		{
-			System.Windows.Forms.Application.Exit();
+			Application.Exit();
 
 			return true;
 		}
