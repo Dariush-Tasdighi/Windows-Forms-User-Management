@@ -68,14 +68,11 @@ public partial class UpdateUserForm : BaseForm
 				return;
 			}
 
-			fullNameTextBox.Text =
-				currentUser.FullName;
-
-			descriptionTextBox.Text =
-				currentUser.Description;
-
 			isAdminCheckBox.Checked = currentUser.IsAdmin;
 			isActiveCheckBox.Checked = currentUser.IsActive;
+
+			fullNameTextBox.Text = currentUser.FullName;
+			descriptionTextBox.Text = currentUser.Description;
 		}
 		catch (Exception ex)
 		{
@@ -88,6 +85,12 @@ public partial class UpdateUserForm : BaseForm
 		if (Utility.AuthenticatedUser is null)
 		{
 			Application.Exit();
+			return;
+		}
+
+		if (Utility.AuthenticatedUser.IsAdmin == false)
+		{
+			Close();
 			return;
 		}
 
@@ -112,14 +115,19 @@ public partial class UpdateUserForm : BaseForm
 				return;
 			}
 
-			currentUser.FullName =
-				fullNameTextBox.Text;
+			// **************************************************
+			fullNameTextBox.Text =
+				Utility.FixText(text: fullNameTextBox.Text);
 
-			currentUser.Description =
-				descriptionTextBox.Text;
+			descriptionTextBox.Text =
+				Utility.FixText(text: descriptionTextBox.Text);
+			// **************************************************
 
 			currentUser.IsAdmin = isAdminCheckBox.Checked;
 			currentUser.IsActive = isActiveCheckBox.Checked;
+
+			currentUser.FullName = fullNameTextBox.Text;
+			currentUser.Description = descriptionTextBox.Text;
 
 			databaseContext.SaveChanges();
 
@@ -152,6 +160,12 @@ public partial class UpdateUserForm : BaseForm
 		if (Utility.AuthenticatedUser is null)
 		{
 			Application.Exit();
+			return;
+		}
+
+		if (Utility.AuthenticatedUser.IsAdmin == false)
+		{
+			Close();
 			return;
 		}
 

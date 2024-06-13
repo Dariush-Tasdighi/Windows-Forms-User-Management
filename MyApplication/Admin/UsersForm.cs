@@ -58,10 +58,9 @@ public partial class UsersForm : BaseForm
 			fullNameTextBox.Text =
 				Utility.FixText(text: fullNameTextBox.Text);
 
+			List<User> users;
 			//var users; // Compile Error!
 			//var users = null; // Compile Error!
-
-			List<User> users;
 
 			if (fullNameTextBox.Text == string.Empty)
 			{
@@ -72,39 +71,6 @@ public partial class UsersForm : BaseForm
 			}
 			else
 			{
-				//users =
-				//	databaseContext.Users
-				//	.Where(current => current.FullName == fullNameTextBox.Text)
-				//	.ToList()
-				//	;
-
-				//users =
-				//	databaseContext.Users
-				//	.Where(current => current.FullName.ToLower() == fullNameTextBox.Text.ToLower())
-				//	.ToList()
-				//	;
-
-				//users =
-				//	databaseContext.Users
-				//	.Where(current => current.FullName != null &&
-				//		current.FullName.ToLower() == fullNameTextBox.Text.ToLower())
-				//	.ToList()
-				//	;
-
-				//users =
-				//	databaseContext.Users
-				//	.Where(current => current.FullName != null &&
-				//		current.FullName.ToLower().StartsWith(fullNameTextBox.Text.ToLower()))
-				//	.ToList()
-				//	;
-
-				//users =
-				//	databaseContext.Users
-				//	.Where(current => current.FullName != null &&
-				//		current.FullName.ToLower().EndsWith(fullNameTextBox.Text.ToLower()))
-				//	.ToList()
-				//	;
-
 				users =
 					databaseContext.Users
 					.Where(current => current.FullName != null &&
@@ -114,16 +80,14 @@ public partial class UsersForm : BaseForm
 			}
 
 			usersDataGridView.DataSource = users;
-
-			fullNameTextBox.SelectAll();
-			fullNameTextBox.Focus();
 		}
 		catch (Exception ex)
 		{
 			MessageBox.Show(text: ex.Message);
-
-			fullNameTextBox.Focus();
 		}
+
+		fullNameTextBox.SelectAll();
+		fullNameTextBox.Focus();
 	}
 
 	private void UsersDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

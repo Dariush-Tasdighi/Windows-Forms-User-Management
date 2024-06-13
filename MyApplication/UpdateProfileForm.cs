@@ -114,11 +114,8 @@ public partial class UpdateProfileForm : BaseForm
 			// **************************************************
 
 			// **************************************************
-			currentUser.FullName =
-				fullNameTextBox.Text;
-
-			currentUser.Description =
-				descriptionTextBox.Text;
+			currentUser.FullName = fullNameTextBox.Text;
+			currentUser.Description = descriptionTextBox.Text;
 
 			databaseContext.SaveChanges();
 			// **************************************************
