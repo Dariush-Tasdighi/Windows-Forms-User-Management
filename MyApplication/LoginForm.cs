@@ -63,7 +63,10 @@ public partial class LoginForm : BaseForm
 			{
 				// پیغام ذیل کاملا دقیق بوده، ولی از نظر مسائل امنیتی صلاح نیست
 
-				//MessageBox.Show(text: "Username is not correct!");
+				//var errorMessage =
+				//	"Username is not correct!";
+
+				//MessageBox.Show(text: errorMessage);
 
 				// دقت کنید که در این حالت، پیغام خطا باید گنگ باشد
 
@@ -86,7 +89,10 @@ public partial class LoginForm : BaseForm
 			{
 				// پیغام ذیل کاملا دقیق بوده، ولی از نظر مسائل امنیتی صلاح نیست
 
-				//MessageBox.Show(text: "Password is not correct!");
+				//var errorMessage =
+				//	"Password is not correct!";
+
+				//MessageBox.Show(text: errorMessage);
 
 				// دقت کنید که در این حالت، پیغام خطا باید گنگ باشد
 
@@ -99,6 +105,10 @@ public partial class LoginForm : BaseForm
 
 				return;
 			}
+
+			//if (!foundedUser.IsActive)
+			//{
+			//}
 
 			if (foundedUser.IsActive == false)
 			{
@@ -114,6 +124,8 @@ public partial class LoginForm : BaseForm
 
 			// **************************************************
 			//MessageBox.Show(text: "Welcome!");
+
+			//return;
 			// **************************************************
 
 			// **************************************************
@@ -151,7 +163,10 @@ public partial class LoginForm : BaseForm
 		}
 		catch (Exception ex)
 		{
-			MessageBox.Show(text: $"Error: {ex.Message}");
+			var errorMessage =
+				$"Error: {ex.Message}";
+
+			MessageBox.Show(text: errorMessage);
 		}
 	}
 

@@ -76,7 +76,10 @@ public partial class UpdateUserForm : BaseForm
 		}
 		catch (Exception ex)
 		{
-			MessageBox.Show(text: $"Error: {ex.Message}");
+			var errorMessage =
+				$"Error: {ex.Message}";
+
+			MessageBox.Show(text: errorMessage);
 		}
 	}
 
@@ -151,7 +154,10 @@ public partial class UpdateUserForm : BaseForm
 		}
 		catch (Exception ex)
 		{
-			MessageBox.Show(text: $"Error: {ex.Message}");
+			var errorMessage =
+				$"Error: {ex.Message}";
+
+			MessageBox.Show(text: errorMessage);
 		}
 	}
 
@@ -205,7 +211,10 @@ public partial class UpdateUserForm : BaseForm
 		}
 		catch (Exception ex)
 		{
-			MessageBox.Show(text: $"Error: {ex.Message}");
+			var errorMessage =
+				$"Error: {ex.Message}";
+
+			MessageBox.Show(text: errorMessage);
 		}
 	}
 }

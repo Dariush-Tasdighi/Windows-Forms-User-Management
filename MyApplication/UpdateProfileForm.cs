@@ -70,7 +70,10 @@ public partial class UpdateProfileForm : BaseForm
 		}
 		catch (Exception ex)
 		{
-			MessageBox.Show(text: $"Error: {ex.Message}");
+			var errorMessage =
+				$"Error: {ex.Message}";
+
+			MessageBox.Show(text: errorMessage);
 		}
 	}
 
@@ -134,7 +137,10 @@ public partial class UpdateProfileForm : BaseForm
 		}
 		catch (Exception ex)
 		{
-			MessageBox.Show(text: $"Error: {ex.Message}");
+			var errorMessage =
+				$"Error: {ex.Message}";
+
+			MessageBox.Show(text: errorMessage);
 		}
 	}
 }
