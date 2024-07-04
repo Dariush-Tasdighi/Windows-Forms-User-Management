@@ -213,22 +213,33 @@ public static class Utility : object
 	// **************************************************
 
 	// **************************************************
+	//public static bool IsAdmin;
+	// **************************************************
+
+	// **************************************************
+	//public static bool IsAdmin;
 	//public static Guid? UserId;
 	// **************************************************
 
 	// **************************************************
+	//public static bool IsAdmin;
 	//public static Guid? UserId;
 	//public static string? Username;
 	// **************************************************
 
 	// **************************************************
+	//public static bool IsAdmin;
 	//public static Guid? UserId;
 	//public static string? Username;
 	//public static string? FullName;
 	// **************************************************
 
 	// **************************************************
-	public static User? AuthenticatedUser;
+	//public static User? AuthenticatedUser;
+	// **************************************************
+
+	// **************************************************
+	public static User? AuthenticatedUser { get; set; }
 	// **************************************************
 
 	public static bool Exit()

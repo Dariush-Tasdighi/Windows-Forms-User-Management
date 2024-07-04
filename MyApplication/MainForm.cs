@@ -83,10 +83,11 @@ public partial class MainForm : Form
 	{
 		if (MyUpdateProfileForm is null || MyUpdateProfileForm.IsDisposed)
 		{
-			MyUpdateProfileForm = new UpdateProfileForm
-			{
-				MdiParent = this,
-			};
+			MyUpdateProfileForm =
+				new UpdateProfileForm
+				{
+					MdiParent = this,
+				};
 		}
 
 		MyUpdateProfileForm.Show();
