@@ -132,4 +132,9 @@ public partial class MainForm : Form
 		//	e.Cancel = true;
 		//}
 	}
+
+	private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+	{
+		Application.Exit();
+	}
 }

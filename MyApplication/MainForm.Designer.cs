@@ -140,6 +140,7 @@
 			Text = "User Management";
 			WindowState = System.Windows.Forms.FormWindowState.Maximized;
 			FormClosing += MainForm_FormClosing;
+			FormClosed += MainForm_FormClosed;
 			Load += MainForm_Load;
 			myMenuStrip.ResumeLayout(false);
 			myMenuStrip.PerformLayout();

@@ -39,7 +39,10 @@ public partial class UsersForm : BaseForm
 		//}
 		//catch (Exception ex)
 		//{
-		//	MessageBox.Show(text: ex.Message);
+		//	var errorMessage =
+		//		$"Error: {ex.Message}";
+
+		//	MessageBox.Show(text: errorMessage);
 		//}
 		// **************************************************
 	}
