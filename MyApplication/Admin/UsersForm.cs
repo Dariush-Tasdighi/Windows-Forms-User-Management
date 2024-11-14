@@ -56,7 +56,7 @@ public partial class UsersForm : BaseForm
 	{
 		try
 		{
-			using var databaseContext = new DatabaseContext();
+			using var databaseContext = new ApplicationDbContext();
 
 			fullNameTextBox.Text =
 				Utility.FixText(text: fullNameTextBox.Text);

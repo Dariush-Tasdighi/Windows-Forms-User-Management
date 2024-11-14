@@ -3,29 +3,31 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Persistence;
 
-public class DatabaseContext : DbContext
+public class ApplicationDbContext : DbContext
 {
-	public DatabaseContext() : base()
+	public ApplicationDbContext() : base()
 	{
 		Database.EnsureCreated();
 	}
 
 	public DbSet<User> Users { get; set; }
 
-	protected override void OnConfiguring
-		(DbContextOptionsBuilder optionsBuilder)
+	protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 	{
 		var connectionString =
 			"Server=.;User ID=sa;Password=1234512345;Database=USER_MANAGEMENT;MultipleActiveResultSets=true;TrustServerCertificate=True;";
 
-		// UseSqlServer() -> using Microsoft.EntityFrameworkCore;
-		optionsBuilder.UseSqlServer
-			(connectionString: connectionString);
+		optionsBuilder
+			.UseSqlServer(connectionString: connectionString)
+			;
 	}
 
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{
 		modelBuilder.ApplyConfigurationsFromAssembly
-			(assembly: typeof(Configurations.UserConfiguration).Assembly);
+			(assembly: typeof(ApplicationDbContext).Assembly);
+
+		//modelBuilder.ApplyConfigurationsFromAssembly
+		//	(assembly: typeof(Configurations.UserConfiguration).Assembly);
 	}
 }

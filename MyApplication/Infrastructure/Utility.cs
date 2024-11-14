@@ -47,11 +47,8 @@ public static class Utility : object
 			return string.Empty;
 		}
 
-		text =
-			text.Trim();
-
-		//text =
-		//	text.TrimStart().TrimEnd();
+		text = text.Trim();
+		//text = text.TrimStart().TrimEnd();
 
 		if (text.Length == 0)
 		{
@@ -213,7 +210,7 @@ public static class Utility : object
 	// **************************************************
 
 	// **************************************************
-	//public static bool IsAdmin;
+	//public static Guid? UserId;
 	// **************************************************
 
 	// **************************************************

@@ -136,7 +136,7 @@ namespace MyApplication
 
 			try
 			{
-				using var databaseContext = new DatabaseContext();
+				using var databaseContext = new ApplicationDbContext();
 
 				var currentUser =
 					databaseContext.Users

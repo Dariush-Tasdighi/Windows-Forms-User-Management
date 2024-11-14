@@ -4,8 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Persistence.Configurations;
 
-internal class UserConfiguration :
-	object, IEntityTypeConfiguration<User>
+internal class UserConfiguration : object, IEntityTypeConfiguration<User>
 {
 	public UserConfiguration() : base()
 	{
@@ -15,6 +14,13 @@ internal class UserConfiguration :
 	{
 		// **************************************************
 		// **************************************************
+		// **************************************************
+		builder
+			.HasKey(current => current.Id)
+			.IsClustered(clustered: false)
+			;
+		// **************************************************
+
 		// **************************************************
 		builder
 			.Property(current => current.Username)

@@ -93,14 +93,14 @@ public partial class RegisterForm : BaseForm
 
 		try
 		{
-			using var databaseContext = new DatabaseContext();
+			using var applicationDbContext = new ApplicationDbContext();
 
-			var foundedUser =
-				databaseContext.Users
+			var foundUser =
+				applicationDbContext.Users
 				.Where(current => current.Username.ToLower() == usernameTextBox.Text.ToLower())
 				.FirstOrDefault();
 
-			if (foundedUser is not null)
+			if (foundUser is not null)
 			{
 				var errorMessage =
 					"This username is already exist! Please choose another one.";
@@ -121,9 +121,10 @@ public partial class RegisterForm : BaseForm
 					FullName = fullNameTextBox.Text,
 				};
 
-			databaseContext.Add(entity: newUser);
+			applicationDbContext.Add(entity: newUser);
+			//applicationDbContext.Users.Add(entity: newUser);
 
-			databaseContext.SaveChanges();
+			applicationDbContext.SaveChanges();
 
 			MessageBox.Show(text: "Registration Done!");
 

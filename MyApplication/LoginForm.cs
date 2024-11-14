@@ -51,15 +51,16 @@ public partial class LoginForm : BaseForm
 
 		try
 		{
-			using var databaseContext = new DatabaseContext();
+			//var applicationDbContext = new ApplicationDbContext();
+			using var applicationDbContext = new ApplicationDbContext();
 
-			var foundedUser =
-				databaseContext.Users
-				.Where(current =>
-					current.Username.ToLower() == usernameTextBox.Text.ToLower())
+			var foundUser =
+				applicationDbContext.Users
+				.Where(current => current.Username.ToLower() == usernameTextBox.Text.ToLower())
 				.FirstOrDefault();
 
-			if (foundedUser is null)
+			if (foundUser is null)
+			//if (foundUser == null)
 			{
 				// پیغام ذیل کاملا دقیق بوده، ولی از نظر مسائل امنیتی صلاح نیست
 
@@ -80,11 +81,11 @@ public partial class LoginForm : BaseForm
 				return;
 			}
 
-			//if (foundedUser.Password != passwordTextBox.Text)
+			//if (foundUser.Password != passwordTextBox.Text)
 			//{
 			//}
 
-			if (string.Compare(foundedUser.Password,
+			if (string.Compare(foundUser.Password,
 				passwordTextBox.Text, ignoreCase: false) != 0)
 			{
 				// پیغام ذیل کاملا دقیق بوده، ولی از نظر مسائل امنیتی صلاح نیست
@@ -106,11 +107,11 @@ public partial class LoginForm : BaseForm
 				return;
 			}
 
-			//if (!foundedUser.IsActive)
+			//if (!foundUser.IsActive)
 			//{
 			//}
 
-			if (foundedUser.IsActive == false)
+			if (foundUser.IsActive == false)
 			{
 				var errorMessage =
 					"You can not login right now! Please contact support.";
@@ -140,7 +141,7 @@ public partial class LoginForm : BaseForm
 			// **************************************************
 			// روش احمقانه
 			// **************************************************
-			Utility.AuthenticatedUser = foundedUser;
+			Utility.AuthenticatedUser = foundUser;
 
 			Hide();
 
@@ -151,7 +152,7 @@ public partial class LoginForm : BaseForm
 			// **************************************************
 			// *** روش هوشمندانه ********************************
 			// **************************************************
-			//Utility.AuthenticatedUser = foundedUser;
+			//Utility.AuthenticatedUser = foundUser;
 
 			//Hide();
 
