@@ -107,11 +107,12 @@ public static class Utility : object
 	{
 		get
 		{
-			if (_loginForm is null || _loginForm.IsDisposed)
-			{
-				_loginForm =
-					new LoginForm();
-			}
+			//if (_loginForm is null)
+			//{
+			//	_loginForm = new LoginForm();
+			//}
+
+			_loginForm ??= new LoginForm();
 
 			return _loginForm;
 		}
@@ -121,11 +122,7 @@ public static class Utility : object
 	{
 		if (_loginForm != null)
 		{
-			if (_loginForm.IsDisposed == false)
-			{
-				_loginForm.Dispose();
-			}
-
+			_loginForm.Dispose();
 			_loginForm = null;
 		}
 	}
@@ -145,11 +142,12 @@ public static class Utility : object
 	{
 		get
 		{
-			if (_registerForm is null || _registerForm.IsDisposed)
-			{
-				_registerForm =
-					new RegisterForm();
-			}
+			//if (_registerForm is null)
+			//{
+			//	_registerForm = new RegisterForm();
+			//}
+
+			_registerForm ??= new RegisterForm();
 
 			return _registerForm;
 		}
@@ -157,13 +155,9 @@ public static class Utility : object
 
 	public static void DisposeRegisterForm()
 	{
-		if (_registerForm != null)
+		if (_registerForm is not null)
 		{
-			if (_registerForm.IsDisposed == false)
-			{
-				_registerForm.Dispose();
-			}
-
+			_registerForm.Dispose();
 			_registerForm = null;
 		}
 	}
@@ -183,11 +177,12 @@ public static class Utility : object
 	{
 		get
 		{
-			if (_mainForm is null || _mainForm.IsDisposed)
-			{
-				_mainForm =
-					new MainForm();
-			}
+			//if (_mainForm is null)
+			//{
+			//	_mainForm = new MainForm();
+			//}
+
+			_mainForm ??= new MainForm();
 
 			return _mainForm;
 		}
@@ -197,11 +192,7 @@ public static class Utility : object
 	{
 		if (_mainForm != null)
 		{
-			if (_mainForm.IsDisposed == false)
-			{
-				_mainForm.Dispose();
-			}
-
+			_mainForm.Dispose();
 			_mainForm = null;
 		}
 	}
