@@ -28,10 +28,10 @@ public partial class UsersForm : BaseForm
 		// **************************************************
 		//try
 		//{
-		//	using var databaseContext = new DatabaseContext();
+		//	using var applicationDbContext = new ApplicationDbContext();
 
 		//	var users =
-		//		databaseContext.Users
+		//		applicationDbContext.Users
 		//		.ToList()
 		//		;
 
@@ -56,7 +56,7 @@ public partial class UsersForm : BaseForm
 	{
 		try
 		{
-			using var databaseContext = new ApplicationDbContext();
+			using var applicationDbContext = new ApplicationDbContext();
 
 			fullNameTextBox.Text =
 				Utility.FixText(text: fullNameTextBox.Text);
@@ -68,14 +68,14 @@ public partial class UsersForm : BaseForm
 			if (fullNameTextBox.Text == string.Empty)
 			{
 				users =
-					databaseContext.Users
+					applicationDbContext.Users
 					.ToList()
 					;
 			}
 			else
 			{
 				users =
-					databaseContext.Users
+					applicationDbContext.Users
 					.Where(current => current.FullName != null &&
 						current.FullName.ToLower().Contains(fullNameTextBox.Text.ToLower()))
 					.ToList()
@@ -111,7 +111,7 @@ public partial class UsersForm : BaseForm
 			//MessageBox.Show(selectedUser.Username);
 
 			var updateUserForm =
-				new UpdateUserForm()
+				new UpdateUserForm
 				{
 					SelectedUser = selectedUser,
 				};

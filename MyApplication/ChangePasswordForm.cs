@@ -136,10 +136,10 @@ namespace MyApplication
 
 			try
 			{
-				using var databaseContext = new ApplicationDbContext();
+				using var applicationDbContext = new ApplicationDbContext();
 
 				var currentUser =
-					databaseContext.Users
+					applicationDbContext.Users
 					.Where(current => current.Id == Utility.AuthenticatedUser.Id)
 					.FirstOrDefault();
 
@@ -173,7 +173,7 @@ namespace MyApplication
 				currentUser.Password =
 					newPasswordTextBox.Text;
 
-				databaseContext.SaveChanges();
+				applicationDbContext.SaveChanges();
 				// **************************************************
 
 				MessageBox.Show

@@ -141,23 +141,23 @@ public partial class LoginForm : BaseForm
 			// **************************************************
 			// روش احمقانه
 			// **************************************************
-			Utility.AuthenticatedUser = foundUser;
+			//Utility.AuthenticatedUser = foundUser;
 
-			Hide();
+			//Hide();
 
-			var mainForm = new MainForm();
-			mainForm.Show();
+			//var mainForm = new MainForm();
+			//mainForm.Show();
 			// **************************************************
 
 			// **************************************************
 			// *** روش هوشمندانه ********************************
 			// **************************************************
-			//Utility.AuthenticatedUser = foundUser;
+			Utility.AuthenticatedUser = foundUser;
 
-			//Hide();
+			Hide();
 
-			//Utility.MainForm.ResetForm();
-			//Utility.MainForm.Show();
+			Utility.MainForm.ResetForm();
+			Utility.MainForm.Show();
 			// **************************************************
 			// **************************************************
 			// **************************************************

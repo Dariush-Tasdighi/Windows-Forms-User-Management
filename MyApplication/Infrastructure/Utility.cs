@@ -68,9 +68,9 @@ public static class Utility : object
 	// **************************************************
 	// Solution (1)
 	// **************************************************
-	//public static MainForm MainForm;
-	//public static LoginForm LoginForm;
-	//public static RegisterForm RegisterForm;
+	//public static MainForm? MainForm;
+	//public static LoginForm? LoginForm;
+	//public static RegisterForm? RegisterForm;
 	// **************************************************
 	// /Solution (1)
 	// **************************************************
@@ -88,9 +88,9 @@ public static class Utility : object
 	// **************************************************
 	// Solution (3)
 	// **************************************************
-	//public static MainForm MainForm;
-	//public static LoginForm LoginForm;
-	//public static RegisterForm RegisterForm;
+	//public static MainForm? MainForm;
+	//public static LoginForm? LoginForm;
+	//public static RegisterForm? RegisterForm;
 	// **************************************************
 	// /Solution (3)
 	// **************************************************

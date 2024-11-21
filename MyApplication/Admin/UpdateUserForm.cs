@@ -4,6 +4,7 @@ using Persistence;
 using System.Linq;
 using Infrastructure;
 using System.Windows.Forms;
+using System.ComponentModel;
 
 namespace MyApplication.Admin;
 
@@ -14,6 +15,8 @@ public partial class UpdateUserForm : BaseForm
 		InitializeComponent();
 	}
 
+	[DesignerSerializationVisibility
+		(visibility: DesignerSerializationVisibility.Hidden)]
 	public User? SelectedUser { get; set; }
 
 	private void UpdateUserForm_Load(object sender, EventArgs e)
@@ -55,10 +58,10 @@ public partial class UpdateUserForm : BaseForm
 
 		try
 		{
-			using var databaseContext = new ApplicationDbContext();
+			using var applicationDbContext = new ApplicationDbContext();
 
 			var currentUser =
-				databaseContext.Users
+				applicationDbContext.Users
 				.Where(current => current.Id == SelectedUser.Id)
 				.FirstOrDefault();
 
@@ -105,10 +108,10 @@ public partial class UpdateUserForm : BaseForm
 
 		try
 		{
-			using var databaseContext = new ApplicationDbContext();
+			using var AuthenticatedUser = new ApplicationDbContext();
 
 			var currentUser =
-				databaseContext.Users
+				AuthenticatedUser.Users
 				.Where(current => current.Id == SelectedUser.Id)
 				.FirstOrDefault();
 
@@ -132,7 +135,7 @@ public partial class UpdateUserForm : BaseForm
 			currentUser.FullName = fullNameTextBox.Text;
 			currentUser.Description = descriptionTextBox.Text;
 
-			databaseContext.SaveChanges();
+			AuthenticatedUser.SaveChanges();
 
 			// **************************************************
 			//Utility.AuthenticatedUser = currentUser;

@@ -2,6 +2,7 @@
 using Infrastructure;
 using MyApplication.Admin;
 using System.Windows.Forms;
+using System.ComponentModel;
 
 namespace MyApplication;
 
@@ -12,6 +13,8 @@ public partial class MainForm : Form
 		InitializeComponent();
 	}
 
+	[DesignerSerializationVisibility
+		(visibility: DesignerSerializationVisibility.Hidden)]
 	public bool IsClosing { get; set; }
 
 	private void MainForm_Load(object sender, EventArgs e)
