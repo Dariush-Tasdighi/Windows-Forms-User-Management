@@ -41,10 +41,10 @@ public partial class UpdateProfileForm : BaseForm
 
 		try
 		{
-			using var databaseContext = new ApplicationDbContext();
+			using var applicationDbContext = new ApplicationDbContext();
 
 			var currentUser =
-				databaseContext.Users
+				applicationDbContext.Users
 				.Where(current => current.Id == Utility.AuthenticatedUser.Id)
 				.FirstOrDefault();
 
@@ -87,10 +87,10 @@ public partial class UpdateProfileForm : BaseForm
 
 		try
 		{
-			using var databaseContext = new ApplicationDbContext();
+			using var applicationDbContext = new ApplicationDbContext();
 
 			var currentUser =
-				databaseContext.Users
+				applicationDbContext.Users
 				.Where(current => current.Id == Utility.AuthenticatedUser.Id)
 				.FirstOrDefault();
 
@@ -120,7 +120,7 @@ public partial class UpdateProfileForm : BaseForm
 			currentUser.FullName = fullNameTextBox.Text;
 			currentUser.Description = descriptionTextBox.Text;
 
-			databaseContext.SaveChanges();
+			applicationDbContext.SaveChanges();
 			// **************************************************
 
 			MessageBox.Show

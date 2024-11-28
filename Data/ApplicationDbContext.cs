@@ -5,7 +5,9 @@ namespace Persistence;
 
 public class ApplicationDbContext : DbContext
 {
+#pragma warning disable CS8618
 	public ApplicationDbContext() : base()
+#pragma warning restore CS8618
 	{
 		Database.EnsureCreated();
 	}

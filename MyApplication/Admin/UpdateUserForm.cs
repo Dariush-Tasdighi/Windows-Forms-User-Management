@@ -186,10 +186,10 @@ public partial class UpdateUserForm : BaseForm
 
 		try
 		{
-			using var databaseContext = new ApplicationDbContext();
+			using var applicationDbContext = new ApplicationDbContext();
 
 			var currentUser =
-				databaseContext.Users
+				applicationDbContext.Users
 				.Where(current => current.Id == SelectedUser.Id)
 				.FirstOrDefault();
 
@@ -200,12 +200,12 @@ public partial class UpdateUserForm : BaseForm
 			}
 
 			// EF Core
-			databaseContext.Remove(entity: currentUser);
+			applicationDbContext.Remove(entity: currentUser);
 
 			// EF / EF Core
-			//databaseContext.Users.Remove(entity: currentUser);
+			//applicationDbContext.Users.Remove(entity: currentUser);
 
-			databaseContext.SaveChanges();
+			applicationDbContext.SaveChanges();
 
 			MessageBox.Show
 				(text: "The User profile deleted successfully...");
